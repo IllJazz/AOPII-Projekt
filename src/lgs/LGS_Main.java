@@ -6,6 +6,7 @@ public class LGS_Main {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Hallo");
+		System.out.println("Der neue Test");
 
 	}
 
