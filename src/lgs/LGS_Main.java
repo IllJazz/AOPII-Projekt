@@ -7,6 +7,7 @@ public class LGS_Main {
 		
 		System.out.println("Hallo");
 		System.out.println("Der neue Test");
+		System.out.println("Markus Test");
 
 	}
 
