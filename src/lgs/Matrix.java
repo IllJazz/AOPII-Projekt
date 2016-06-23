@@ -1,11 +1,21 @@
 package lgs;
 
+/**
+ * 
+ * @author Markus Müller
+ */
 public class Matrix {
 
+	//Matrix a * Variablenvektor x = Lösungsvektor b
 	private double[][] a;
 	private double[] b;
 	private int m, n;
 	
+	/**
+	 * 
+	 * @param array
+	 * @throws NoMatrixException
+	 */
 	public Matrix(double[][] array) throws NoMatrixException {
 		try {
 			m = array.length;
@@ -30,7 +40,16 @@ public class Matrix {
 			}
 		}
 	}
+
+	//overwrite from IOSteam... syso(Matrix)->print Matrix to console
+	public void print() {
+		
+	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] solve() {
 		return null;
 	}
