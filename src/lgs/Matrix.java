@@ -20,6 +20,9 @@ public class Matrix {
 		try {
 			m = array.length;
 			n = array[0].length;
+			if(m == 0 || n == 0) {
+				throw new NoMatrixException("Array muss mindestens ein Element enthalten (mindestens 1 x 1)!");
+			}
 			for(double[] i: array) {
 				if(!(i.length == n)) {
 					throw new NoMatrixException("Array ist keine m x n Matrix!");
@@ -41,9 +44,27 @@ public class Matrix {
 		}
 	}
 
-	//overwrite from IOSteam... syso(Matrix)->print Matrix to console
-	public void print() {
-		
+	@Override
+	public String toString() {
+		String string = new String();
+		if(n != 1){
+			for(int i = 0; i < m; i++){
+				for(int j = 0; j < n; j++) {
+					if(j == 0) {
+						string += "[ " + a[i][j] ;
+					} else if(j == (n - 1)) {
+						string += " " + b[i] + " ]\n";
+					} else {
+						string += " " + a[i][j];
+					}
+				}
+			}
+		} else {
+			for(int i = 0; i < m; i++) {
+				string += "[ " + b[i] + " ]\n";
+			}
+		}
+		return string;
 	}
 	
 	/**
