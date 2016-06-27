@@ -63,28 +63,22 @@ public class Matrix {
 		for(int i = 0; i < m - 1; i++) {
 			for(int j = i + 1; j < m; j++){
 				double factor = - a[j][i] / a[i][i];
-				for(int k = i; k < n; k++) {
-					if(k != n - 1) {
-						a[j][k] += factor * a[j - 1][k];
-					} else {
-						b[j] += factor * b[j - 1];
-					}
+				for(int k = 0; k < n; k++) {
+					a[j][i] += factor * a[i][i];
 				}
 			}
 		}
 		System.out.println("a:\n" + toString(a));
 		System.out.println("b:\n" + toString(b));
-		for(int i = 1; i < m; i ++) {
-			if(i != m - 1) {
-				solution[i] = a[i][i];
-			}
+		for(int i = 0; i < m; i ++) {
+			solution[i] = a[i][i];
 		}
 		return solution;
 	}
 	
 	/**
 	 * Zusammenfügen von Matrix a und Lösungsvektor b in ein zweidimensionales double-Array
-	 * @return matrix zweidimensionales double-Array aus Matrix a und Vektor b der Matrix
+	 * @return matrix zweidimensionales double-Array aus Matrix a und Vektor b des Matrixobjekts
 	 */
 	public double[][] getMatrix() {
 		double[][] matrix = new double[m][n];
