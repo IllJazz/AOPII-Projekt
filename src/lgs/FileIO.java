@@ -40,14 +40,14 @@ public class FileIO {
 	    }
 	   
 	    // aufsplitten der Strings und Ablage in Feld
-	    for (int i =0;i<2;i++) {
+	    for (int i =0;i<lines.size();i++) {
 			teil.add(lines.get(i).toString().split(";"));
 	    }
 	    
 	    // String-ArrayList in Double-Array konvertieren
 	    matrix = new double[lines.size()][teil.get(0).length];
 	    for (int j=0; j< lines.size();j++) {
-	    	for (int k=0;k<teil.get(0).length;k++) {
+	    	for (int k=0;k<teil.get(j).length;k++) {
 	    		matrix[j][k] = Double.parseDouble(teil.get(j)[k]); 
 	    	}
 	    }
