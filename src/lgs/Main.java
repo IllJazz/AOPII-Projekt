@@ -23,7 +23,9 @@ public class Main {
 		//Konsolenausgabe der Matrix
 		//Lösen der Matrix
 		try {
-			Matrix matrix = new Matrix(array);
+			//Matrix matrix = new Matrix(array);
+			FileIO neueMatrix = new FileIO(); //geändert Ilja
+			Matrix matrix = new Matrix(neueMatrix.getMatrix()); //geändert Ilja
 			System.out.println(matrix);
 			double[] solution = new double[array.length]; 
 			solution = matrix.solve();
