@@ -11,10 +11,10 @@ import java.text.DecimalFormatSymbols;
  */
 public class Matrix {
 
-	//Matrix a * Variablenvektor x = Lösungsvektor b
+//	Matrix a * Variablenvektor x = Lösungsvektor b
 	private double[][] a;
 	private double[] b;
-	//m Zeilen und n Spalten (Spalten von a + 1 von b)
+//	m Zeilen und n Spalten (Spalten von a + 1 von b)
 	private int m, n;
 	
 	/**
@@ -54,24 +54,43 @@ public class Matrix {
 	
 	/**
 	 * 
-	 * @return 
+	 * @return solution Lösungsvektor Matrix (LGS)
+	 * @throws NoSolvableMatrixException Matrix wird nicht gelöst, falls weniger als zwei Spalten vorhanden sind
+	 * 									 kann dann keine Lösung errechnet werden (aus einem Vektor)
 	 */
-	public double[] solve() {
+	public double[] solve() throws NoSolvableMatrixException {
+		if(n < 2) {
+			throw new NoSolvableMatrixException("Matrix mit nur einer Spalte (Vektor) kann nicht gelöst werden!");
+		}
 		double[] solution = new double[m];
 		double[][] a = this.a;
 		double[] b = this.b;
+//		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
 		for(int i = 0; i < m - 1; i++) {
 			for(int j = i + 1; j < m; j++){
 				double factor = - a[j][i] / a[i][i];
-				for(int k = 0; k < n; k++) {
-					a[j][i] += factor * a[i][i];
+				b[j] += factor * b[i];
+				for(int k = j; k < m; k++) {
+					for(int l = i; l < n - 1; l++) {
+						a[k][l] += factor * a[k - (j - i)][l];
+					}
 				}
 			}
 		}
-		System.out.println("a:\n" + toString(a));
-		System.out.println("b:\n" + toString(b));
+//		Weiterarbeiten nach Gauss-Jordan-Verfahren, Erzeugung der Hauptdiagonalen
+		for(int i = m - 1; i > 0; i--) {
+			for(int j = i - 1; j > -1; j--){
+				double factor = - a[j][i] / a[i][i];
+				b[j] += factor * b[i];
+				for(int k = j; k > -1; k--) {
+					for(int l = i; l > 0; l--) {
+						a[k][l] += factor * a[k - (j - i)][l];
+					}
+				}
+			}
+		}
 		for(int i = 0; i < m; i ++) {
-			solution[i] = a[i][i];
+			solution[i] = b[i] / a[i][i];
 		}
 		return solution;
 	}

@@ -9,9 +9,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//Anlegen eines Arrays der Groeße i x j
-		//zufällige Belegung mit Werten zwischen 0 und 100
-		//i, j >= 1
+//		Anlegen eines Arrays der Groeße i x j
+//		zufällige Belegung mit Werten zwischen 0 und 100
+//		i, j >= 1
 		double[][] array = new double[3][4];
 		Random random = new Random();
 		for(int i = 0; i < array.length; i++) {
@@ -19,16 +19,16 @@ public class Main {
 				array[i][j] = (int)(random.nextDouble() * 100);
 			}
 		}
-		//Matrix anlegen und Array einlesen
-		//Konsolenausgabe der Matrix
-		//Lösen der Matrix
+//		Matrix anlegen und Array einlesen
+//		Konsolenausgabe der Matrix
+//		Lösen der Matrix
 		try {
 			Matrix matrix = new Matrix(array);
-			System.out.println(matrix);
+			System.out.println(matrix.toFileString());
 			double[] solution = new double[array.length]; 
 			solution = matrix.solve();
 			System.out.println("Lösung:\n" + Matrix.toString(solution));
-		} catch(NoMatrixException e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
