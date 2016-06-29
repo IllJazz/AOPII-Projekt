@@ -65,28 +65,25 @@ public class Matrix {
 		double[] solution = new double[m];
 		double[][] a = this.a;
 		double[] b = this.b;
+		double factor;
 //		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
 		for(int i = 0; i < m - 1; i++) {
 			for(int j = i + 1; j < m; j++){
-				double factor = - a[j][i] / a[i][i];
-				b[j] += factor * b[i];
-				for(int k = j; k < m; k++) {
-					for(int l = i; l < n - 1; l++) {
-						a[k][l] += factor * a[k - (j - i)][l];
-					}
+				factor = - a[j][i] / a[i][i];
+				for(int l = 0; l < n - 1; l++) {
+					a[j][l] += factor * a[i][l];
 				}
+				b[j] += factor * b[i];
 			}
 		}
 //		Weiterarbeiten nach Gauss-Jordan-Verfahren, Erzeugung der Hauptdiagonalen
 		for(int i = m - 1; i > 0; i--) {
 			for(int j = i - 1; j > -1; j--){
-				double factor = - a[j][i] / a[i][i];
-				b[j] += factor * b[i];
-				for(int k = j; k > -1; k--) {
-					for(int l = i; l > 0; l--) {
-						a[k][l] += factor * a[k - (j - i)][l];
-					}
+				factor = - a[j][i] / a[i][i];
+				for(int l = n - 2; l > 0; l--) {
+					a[j][l] += factor * a[i][l];
 				}
+				b[j] += factor * b[i];
 			}
 		}
 		for(int i = 0; i < m; i ++) {

@@ -12,7 +12,7 @@ public class Main {
 //		Anlegen eines Arrays der Groeße i x j
 //		zufällige Belegung mit Werten zwischen 0 und 100
 //		i, j >= 1
-		double[][] array = new double[3][4];
+		double[][] array = new double[5][6];
 		Random random = new Random();
 		for(int i = 0; i < array.length; i++) {
 			for(int j = 0; j < array[0].length; j++){
@@ -24,7 +24,9 @@ public class Main {
 //		Lösen der Matrix
 		try {
 			Matrix matrix = new Matrix(array);
-			System.out.println(matrix.toFileString());
+//			FileIO neueMatrix = new FileIO();
+//			Matrix matrix = new Matrix(neueMatrix.getMatrix());
+			System.out.println(matrix);
 			double[] solution = new double[array.length]; 
 			solution = matrix.solve();
 			System.out.println("Lösung:\n" + Matrix.toString(solution));
