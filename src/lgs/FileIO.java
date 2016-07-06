@@ -1,7 +1,9 @@
 package lgs;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +19,12 @@ public class FileIO {
     private List lines = new ArrayList();							//zeilenweise Strings
     private ArrayList<String[]> teil = new ArrayList<String[]>() ;	//gesplittete Strings
     private double[][] matrix ;										//fertige Matrix
-	
+
 	public FileIO() {
 	
-	    // Zeilenweises Einlesen der Datei
+	    // Zeilenweises Einlesen der Datei in ArrayList
 	    try {
-	        file = new FileReader("matrix.txt");
+	        file = new FileReader("matrix2.txt");
 	        buff = new BufferedReader(file);
 	        String line;
 	        while ((line = buff.readLine()) != null) {
@@ -39,20 +41,17 @@ public class FileIO {
 	        }
 	    }
 	   
-	    // aufsplitten der Strings und Ablage in Feld
+	    // Aufsplitten der Strings und Ablage in ArrayList[]
 	    for (int i =0;i<lines.size();i++) {
 			teil.add(lines.get(i).toString().split(";"));
 	    }
-	    // Überprüfung ob jede Zeile gleiche Anzahl an Einträgen hat
-	    for (int i =1;i<lines.size();i++) {
-	    	if (teil.get(i).length<teil.get(i-1).length)
-	    		System.out.println("Anzahl der Werte pro Zeile müssen gleich sein");
-	    }
-	    // maximale Anzahl an Einträgen pro Zeile bestimmen
+	    // ï¿½berprï¿½fung ob jede Zeile gleiche Anzahl an Eintrï¿½gen hat
 	    int m=0;
-	    for(int i=0;i<lines.size();i++) {
-	    	if(m<teil.get(i).length)
-	    		m=teil.get(i).length;
+	    for (int i =1;i<lines.size();i++) {
+	    	if(m<teil.get(i-1).length)
+	    		m=teil.get(i-1).length;
+	    	if (teil.get(i).length<teil.get(i-1).length)
+	    		System.out.println("Anzahl der Werte pro Zeile mï¿½ssen gleich sein"); //throw ...
 	    }
 	    
 	    // String-ArrayList in Double-Array konvertieren
@@ -68,7 +67,33 @@ public class FileIO {
 	    	}
 	    }
 	}
-	
+
+	public void writeFile(Matrix matrix) {
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		try {
+			fw = new FileWriter("../AOPII-Projekt/matrix_out.txt");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    bw = new BufferedWriter(fw);
+
+	    try {
+			bw.write(matrix.toFileString());
+	    	//bw.write("test");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	    try {
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public double[][] getMatrix() {
 		return matrix;
 		

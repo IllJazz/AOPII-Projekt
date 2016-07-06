@@ -9,8 +9,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		Anlegen eines Arrays der Groeße i x j
-//		zufällige Belegung mit Werten zwischen 0 und 100
+//		Anlegen eines Arrays der Groeï¿½e i x j
+//		zufï¿½llige Belegung mit Werten zwischen 0 und 100
 //		i, j >= 1
 		double[][] array = new double[5][6];
 		Random random = new Random();
@@ -21,15 +21,16 @@ public class Main {
 		}
 //		Matrix anlegen und Array einlesen
 //		Konsolenausgabe der Matrix
-//		Lösen der Matrix
+//		Lï¿½sen der Matrix
 		try {
-			Matrix matrix = new Matrix(array);
-//			FileIO neueMatrix = new FileIO();
-//			Matrix matrix = new Matrix(neueMatrix.getMatrix());
+//			Matrix matrix = new Matrix(array);
+			FileIO neueMatrix = new FileIO(); 					// Test FileInput
+			Matrix matrix = new Matrix(neueMatrix.getMatrix());	// Test FileInput
 			System.out.println(matrix);
 			double[] solution = new double[array.length]; 
 			solution = matrix.solve();
-			System.out.println("Lösung:\n" + Matrix.toString(solution));
+			System.out.println("Lï¿½sung:\n" + Matrix.toString(solution));
+			neueMatrix.writeFile(matrix);						// Test FileOutput
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
