@@ -43,12 +43,28 @@ public class FileIO {
 	    for (int i =0;i<lines.size();i++) {
 			teil.add(lines.get(i).toString().split(";"));
 	    }
+	    // Überprüfung ob jede Zeile gleiche Anzahl an Einträgen hat
+	    for (int i =1;i<lines.size();i++) {
+	    	if (teil.get(i).length<teil.get(i-1).length)
+	    		System.out.println("Anzahl der Werte pro Zeile müssen gleich sein");
+	    }
+	    // maximale Anzahl an Einträgen pro Zeile bestimmen
+	    int m=0;
+	    for(int i=0;i<lines.size();i++) {
+	    	if(m<teil.get(i).length)
+	    		m=teil.get(i).length;
+	    }
 	    
 	    // String-ArrayList in Double-Array konvertieren
-	    matrix = new double[lines.size()][teil.get(0).length];
+	    matrix = new double[lines.size()][m];
 	    for (int j=0; j< lines.size();j++) {
 	    	for (int k=0;k<teil.get(j).length;k++) {
-	    		matrix[j][k] = Double.parseDouble(teil.get(j)[k]); 
+	    		try {
+					matrix[j][k] = Double.parseDouble(teil.get(j)[k]);
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	    	}
 	    }
 	}
