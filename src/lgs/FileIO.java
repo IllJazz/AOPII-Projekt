@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * 
@@ -19,12 +20,15 @@ public class FileIO {
     private List lines = new ArrayList();							//zeilenweise Strings
     private ArrayList<String[]> teil = new ArrayList<String[]>() ;	//gesplittete Strings
     private double[][] matrix ;										//fertige Matrix
-
+    private String filename =""; 
+    
 	public FileIO() {
-	
+		Scanner input= new Scanner(System.in);
+	    System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Import des LGS an! > ");
+	    filename = input.next();
 	    // Zeilenweises Einlesen der Datei in ArrayList
 	    try {
-	        file = new FileReader("matrix2.txt");
+	        file = new FileReader(filename);
 	        buff = new BufferedReader(file);
 	        String line;
 	        while ((line = buff.readLine()) != null) {
@@ -69,10 +73,13 @@ public class FileIO {
 	}
 
 	public void writeFile(Matrix matrix) {
+		Scanner input= new Scanner(System.in);
+	    System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Export des LGS an! > ");
+	    filename = input.next();
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		try {
-			fw = new FileWriter("../AOPII-Projekt/matrix_out.txt");
+			fw = new FileWriter("../AOPII-Projekt/"+filename);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,7 +88,6 @@ public class FileIO {
 
 	    try {
 			bw.write(matrix.toFileString());
-	    	//bw.write("test");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
