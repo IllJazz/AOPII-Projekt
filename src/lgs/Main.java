@@ -9,6 +9,12 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
+//		GUI Test
+		GUI testGUI = new GUI();
+		testGUI.setVisible(true);
+		
 //		Anlegen eines Arrays der Groe�e i x j
 //		zuf�llige Belegung mit Werten zwischen 0 und 100
 //		i, j >= 1
