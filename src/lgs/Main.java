@@ -10,7 +10,6 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		
 //		GUI Test
 		GUI testGUI = new GUI();
 		testGUI.setVisible(true);
