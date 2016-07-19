@@ -29,13 +29,13 @@ public class Main {
 //		L�sen der Matrix
 		try {
 //			Matrix matrix = new Matrix(array);
-			FileIO neueMatrix = new FileIO(); 					// Test FileInput
-			Matrix matrix = new Matrix(neueMatrix.getMatrix());	// Test FileInput
-			System.out.println(matrix);
-			double[] solution = new double[array.length]; 
-			solution = matrix.solve();
-			System.out.println("L�sung:\n" + Matrix.toString(solution));
-			neueMatrix.writeFile(matrix);						// Test FileOutput
+			//FileIO neueMatrix = new FileIO(); 					// Test FileInput
+			//Matrix matrix = new Matrix(neueMatrix.getMatrix());	// Test FileInput
+			//System.out.println(matrix);
+			//double[] solution = new double[array.length]; 
+			//solution = matrix.solve();
+			//System.out.println("L�sung:\n" + Matrix.toString(solution));
+			//neueMatrix.writeFile(matrix);						// Test FileOutput
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

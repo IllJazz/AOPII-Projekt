@@ -26,12 +26,12 @@ public class FileIO {
 //	String matrix2="2;1;3;1\n1;2;3;4\n4;3;2;1"; //for testing only
 	public FileIO() {
 		//readString(matrix2); //for testing only
-		readFile();
-		createMatrix();
-	  
+		//readFile();
+		//createMatrix();
 	}
 
-	public void createMatrix() {
+	
+ 	public void createMatrix() {
 		  // Aufsplitten der Strings und Ablage in ArrayList[]
 	    for (int i =0;i<lines.size();i++) {
 			teil.add(lines.get(i).toString().split(";"));
@@ -59,16 +59,18 @@ public class FileIO {
 	    }
 	}
 	
-	public void readFile() {
-		Scanner input= new Scanner(System.in);
-	    System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Import des LGS an! > ");
-	    filename = input.next();
+	public String readFile(String filename) {
+	//	Scanner input= new Scanner(System.in);
+	  //  System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Import des LGS an! > ");
+	  //  filename = input.next();
 	   // input.close();
 	    // Zeilenweises Einlesen der Datei in ArrayList
-	    try {
+
+		try {
+		    String line;
 	        file = new FileReader(filename);
 	        buff = new BufferedReader(file);
-	        String line;
+
 	        while ((line = buff.readLine()) != null) {
 	            lines.add(line);
 	        }
@@ -82,9 +84,15 @@ public class FileIO {
 	            System.err.println("Dateifehler :" + e);
 	        }
 	    }
+		String output="";
+		for (int i=0;i<lines.size();i++) {
+			output+=lines.get(i).toString()+"\n";
+			
+		}
+		return output;
+	    
 		//	for(int i=0; i<lines.size();i++)					//for testing only
 		//		System.out.println(lines.get(i).toString());	//for testing only
-
 	}
 
 	public void readString(String matrix) {
@@ -131,6 +139,12 @@ public class FileIO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public String stringToGUI() {
+		String output="";
+		lines.size();
+		return output;
 	}
 	
 	public double[][] getMatrix() {

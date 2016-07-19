@@ -125,6 +125,10 @@ public class GUI extends JFrame implements ActionListener{
 		if (e.getSource()==this.openItem){
 			JFileChooser fc = new JFileChooser();
 			fc.showOpenDialog(null);
+			String path="";
+			path = fc.getSelectedFile().getAbsolutePath();
+			FileIO datei = new FileIO();
+			enterMatrix.setText(datei.readFile(path));
 		}
 		if(e.getSource()==this.closeItem){
 			System.exit(0);
