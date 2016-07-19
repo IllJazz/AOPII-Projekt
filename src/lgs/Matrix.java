@@ -4,22 +4,22 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
 /**
- * Klasse zur Verwaltung und Lösung einer Matrix
- * für die Lösung wird die Matrix ferner als Matrix a und Lösungsvektor b abgespeichert
+ * Klasse zur Verwaltung und LÃ¶sung einer Matrix
+ * fÃ¶r die LÃ¶sung wird die Matrix ferner als Matrix a und LÃ¶sungsvektor b abgespeichert
  * unter m wird die Anzahl Zeilen der Matrix und unter n die Anzahl Spalten (Spalten von a + 1 von b) gehalten
- * @author Markus Müller
+ * @author Markus MÃ¼ller
  */
 public class Matrix {
 
-//	Matrix a * Variablenvektor x = Lösungsvektor b
+//	Matrix a * Variablenvektor x = LÃ¶sungsvektor b
 	private double[][] a;
 	private double[] b;
 //	m Zeilen und n Spalten (Spalten von a + 1 von b)
 	private int m, n;
 	
 	/**
-	 * erzeugt Matrix aus übergebenem Array
-	 * Array muss mindestens 1 x 1 groß sein
+	 * erzeugt Matrix aus Ã¼bergebenem Array
+	 * Array muss mindestens 1 x 1 groÃŸ sein
 	 * @param array double-Array, aus welchem die Matrix erzeugt werden soll
 	 * @throws NoMatrixException keine Matrix erzeugt, falls keine Elemente im Array, also m == 0 oder n == 0
 	 * 							 oder falls Zeilen unterschiedlich viele Spalten haben, also keine m x n Form
@@ -37,7 +37,7 @@ public class Matrix {
 				}
 			}
 		} catch(Exception e) {
-			RuntimeException re = new RuntimeException("Übergebenes Array oder Teile davon nicht initialisiert!", e);
+			RuntimeException re = new RuntimeException("Ã¼bergebenes Array oder Teile davon nicht initialisiert!", e);
 			re.printStackTrace();
 		}
 		a = new double[m][n-1];
@@ -54,13 +54,13 @@ public class Matrix {
 	
 	/**
 	 * 
-	 * @return solution Lösungsvektor Matrix (LGS)
-	 * @throws NoSolvableMatrixException Matrix wird nicht gelöst, falls weniger als zwei Spalten vorhanden sind
-	 * 									 kann dann keine Lösung errechnet werden (aus einem Vektor)
+	 * @return solution LÃ¶sungsvektor Matrix (LGS)
+	 * @throws NoSolvableMatrixException Matrix wird nicht gelÃ¶st, falls weniger als zwei Spalten vorhanden sind
+	 * 									 kann dann keine LÃ¶sung errechnet werden (aus einem Vektor)
 	 */
 	public double[] solve() throws NoSolvableMatrixException {
 		if(n < 2) {
-			throw new NoSolvableMatrixException("Matrix mit nur einer Spalte (Vektor) kann nicht gelöst werden!");
+			throw new NoSolvableMatrixException("Matrix mit nur einer Spalte (Vektor) kann nicht gelÃ¶st werden!");
 		}
 		double[] solution = new double[m];
 		double[][] a = this.a;
@@ -93,7 +93,7 @@ public class Matrix {
 	}
 	
 	/**
-	 * Zusammenfügen von Matrix a und Lösungsvektor b in ein zweidimensionales double-Array
+	 * ZusammenfÃ¼gen von Matrix a und LÃ¶sungsvektor b in ein zweidimensionales double-Array
 	 * @return matrix zweidimensionales double-Array aus Matrix a und Vektor b des Matrixobjekts
 	 */
 	public double[][] getMatrix() {
@@ -112,7 +112,7 @@ public class Matrix {
 
 	/**
 	 * konvertiert Matrix in einen String
-	 * für Konsolenausgaben mittels System.out.print
+	 * fÃ¼r Konsolenausgaben mittels System.out.print
 	 * Form: [ wert11 wert12 ]
 	 * 		 [ wert21 wert22 ] usw.
 	 * @return string Ausgabestring der Matrix
@@ -160,7 +160,7 @@ public class Matrix {
 	/**
 	 * Umwandlung eines double-Array in einen String
 	 * @param array double-Array, welches in String umgewandelt werden soll
-	 * @return string Ausgabestring für ein double-Array
+	 * @return string Ausgabestring fÃ¼r ein double-Array
 	 */
 	public static String toString(double[] array) {
 		DecimalFormatSymbols symbol = new DecimalFormatSymbols();
@@ -181,7 +181,7 @@ public class Matrix {
 	/**
 	 * Umwandlung eines zweidimensionalen double-Arrays in einen String
 	 * @param array zweidimensionales double-Array, welches in String umgewandelt werden soll
-	 * @return string Ausgabestring für ein zweidimensionales double-Array
+	 * @return string Ausgabestring fÃ¼r ein zweidimensionales double-Array
 	 */
 	public static String toString(double[][] array) {
 		DecimalFormatSymbols symbol = new DecimalFormatSymbols();
