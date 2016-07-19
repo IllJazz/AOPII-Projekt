@@ -14,7 +14,7 @@ public class Main {
 		GUI testGUI = new GUI();
 		testGUI.setVisible(true);
 		
-//		Anlegen eines Arrays der Groe�e i x j
+//		Anlegen eines Arrays der Groeße i x j
 //		zuf�llige Belegung mit Werten zwischen 0 und 100
 //		i, j >= 1
 		double[][] array = new double[5][6];
@@ -26,7 +26,7 @@ public class Main {
 		}
 //		Matrix anlegen und Array einlesen
 //		Konsolenausgabe der Matrix
-//		L�sen der Matrix
+//		Lösen der Matrix
 		try {
 //			Matrix matrix = new Matrix(array);
 			FileIO neueMatrix = new FileIO(); 					// Test FileInput
