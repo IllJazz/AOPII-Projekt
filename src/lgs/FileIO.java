@@ -22,7 +22,7 @@ public class FileIO {
     private List<String> lines = new ArrayList();							//zeilenweise Strings
     private ArrayList<String[]> teil = new ArrayList<String[]>() ;	//gesplittete Strings
     private double[][] matrix ;										//fertige Matrix
-    private String filename =""; 
+//    private String filename =""; 
 //	String matrix2="2;1;3;1\n1;2;3;4\n4;3;2;1"; //for testing only
 	public FileIO() {
 		//readString(matrix2); //for testing only
@@ -111,15 +111,15 @@ public class FileIO {
 		}
 	}
 	
-	public void writeFile(Matrix matrix) {
-		Scanner input= new Scanner(System.in);
-	    System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Export des LGS an! > ");
-	    filename = input.next();
-	   // input.close();
+	public void writeFile(Matrix matrix, String filename) {
+		//Scanner input= new Scanner(System.in);
+		//System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Export des LGS an! > ");
+		//filename = input.next();
+		// input.close();
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		try {
-			fw = new FileWriter("../AOPII-Projekt/"+filename);
+			fw = new FileWriter(filename);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,13 +140,13 @@ public class FileIO {
 			e.printStackTrace();
 		}
 	}
-	
+/*	
 	public String stringToGUI() {
 		String output="";
 		lines.size();
 		return output;
 	}
-	
+*/
 	public double[][] getMatrix() {
 		return matrix;
 		
