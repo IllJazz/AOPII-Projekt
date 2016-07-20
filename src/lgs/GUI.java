@@ -165,11 +165,19 @@ public class GUI extends JFrame implements ActionListener{
 			System.exit(0);
 		}
 		if (e.getSource()==this.openItem){
-			JFileChooser fc = new JFileChooser();
-			fc.showOpenDialog(null);
+			JFileChooser openFileChooser = new JFileChooser();
+			int openPress = openFileChooser.showDialog(null, "Matrix öffnen");
+			
+			if(openPress == JFileChooser.APPROVE_OPTION){
+				System.out.println("Gewählte Datei zum Öffnen ist: " + openFileChooser.getSelectedFile().getPath());
+			}
 		}
 		if (e.getSource()==this.saveItem){
-			//SPEICHERN FUNKTION
+			JFileChooser saveFileChooser = new JFileChooser();
+			int savePress = saveFileChooser.showDialog(null,"Matrix speichern");
+			
+			if(savePress == JFileChooser.APPROVE_OPTION)	
+				System.out.println("Gewählte Datei ist: " + saveFileChooser.getSelectedFile().getPath());
 		}
 		if(e.getSource()==this.closeItem){
 			System.exit(0);
