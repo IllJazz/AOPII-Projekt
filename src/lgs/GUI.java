@@ -37,8 +37,9 @@ public class GUI extends JFrame implements ActionListener{
 	JTextArea enterMatrix;
 	JTextArea outMatrix;
 	JTextArea outResiduum;
-	JTextField oute;
 	JTextField outa;
+	JTextField outr;
+
 	
 	//ermoeglicht, dass die Groeße erkannt wird, die gebraucht wird
 	Dimension size;
@@ -147,23 +148,23 @@ public class GUI extends JFrame implements ActionListener{
 			outResiduum.setVisible(true);
 			this.panel.add(outResiduum);
 			
-			JLabel eLabel = new JLabel("ε\u2090=");
-			size = eLabel.getPreferredSize();
-			eLabel.setBounds(410,310,size.width,30);
-			this.panel.add(eLabel);
-			oute = new JTextField("Hier der e String");
-			oute.setBounds(410,335, 350, 30);
-			oute.setVisible(true);
-			this.panel.add(oute);
-			
-			JLabel aLabel = new JLabel("ε\u1D63=");
+			JLabel aLabel = new JLabel("ε\u2090=");
 			size = aLabel.getPreferredSize();
-			aLabel.setBounds(410,380, size.width,size.height);
+			aLabel.setBounds(410,310,size.width,30);
 			this.panel.add(aLabel);
-			oute = new JTextField("Hier der a String");
-			oute.setBounds(410, 395, 350, 30);
-			oute.setVisible(true);
-			this.panel.add(oute);
+			outa = new JTextField("Hier der Ea String");
+			outa.setBounds(410,335, 350, 30);
+			outa.setVisible(true);
+			this.panel.add(outa);
+			
+			JLabel rLabel = new JLabel("ε\u1D63=");
+			size = rLabel.getPreferredSize();
+			rLabel.setBounds(410,380, size.width,size.height);
+			this.panel.add(rLabel);
+			outr = new JTextField("Hier der Er String");
+			outr.setBounds(410, 395, 350, 30);
+			outr.setVisible(true);
+			this.panel.add(outr);
 
 			this.panel.repaint();
 		}
