@@ -52,7 +52,7 @@ public class GUI extends JFrame implements ActionListener{
 		panel.setLayout(null);
 		
 
-		label = new JLabel("Geben Sie hier Ihre Matrix ein:");
+		label = new JLabel("Geben Sie hier die Matrix Ihres LGS ein:");
 		size=label.getPreferredSize();
 		label.setBounds(20, 10, size.width, size.height);
 		panel.add(label);
@@ -106,6 +106,7 @@ public class GUI extends JFrame implements ActionListener{
 		panel.add(calcButton);
 		panel.add(closeButton);
 		
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		
 		this.add(panel);
@@ -123,7 +124,7 @@ public class GUI extends JFrame implements ActionListener{
 			matrix.createMatrix();
 			
 			resultLabel = new JLabel();
-			resultLabel.setText("Die Matrix hat + hier String von Markus + Lösung");
+			resultLabel.setText("Die Lösung des LGS lautet:");
 			size = resultLabel.getPreferredSize();
 			resultLabel.setBounds(410, 10, size.width, size.height);
 			this.panel.add(resultLabel);
@@ -137,7 +138,7 @@ public class GUI extends JFrame implements ActionListener{
 			ergebnis.solve();
 			outMatrix.setText(ergebnis.toString());
 			
-			JLabel residuumLabel = new JLabel("Das Residuum:");
+			JLabel residuumLabel = new JLabel("Residuum r=");
 			size = residuumLabel.getPreferredSize();
 			residuumLabel.setBounds(410, 160,size.width,size.height);
 			this.panel.add(residuumLabel);
@@ -146,21 +147,21 @@ public class GUI extends JFrame implements ActionListener{
 			outResiduum.setVisible(true);
 			this.panel.add(outResiduum);
 			
-			JLabel eLabel = new JLabel("E r ist:");
+			JLabel eLabel = new JLabel("ε\u2090=");
 			size = eLabel.getPreferredSize();
-			eLabel.setBounds(410,310,size.width,size.height);
+			eLabel.setBounds(410,310,size.width,30);
 			this.panel.add(eLabel);
 			oute = new JTextField("Hier der e String");
-			oute.setBounds(410,330, 350, 30);
+			oute.setBounds(410,335, 350, 30);
 			oute.setVisible(true);
 			this.panel.add(oute);
 			
-			JLabel aLabel = new JLabel("||a|| ist:");
+			JLabel aLabel = new JLabel("ε\u1D63=");
 			size = aLabel.getPreferredSize();
 			aLabel.setBounds(410,380, size.width,size.height);
 			this.panel.add(aLabel);
 			oute = new JTextField("Hier der a String");
-			oute.setBounds(410, 400, 350, 30);
+			oute.setBounds(410, 395, 350, 30);
 			oute.setVisible(true);
 			this.panel.add(oute);
 
@@ -200,6 +201,6 @@ public class GUI extends JFrame implements ActionListener{
 	}
 	
 	
-	
+	// ε
 
 }

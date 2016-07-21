@@ -12,6 +12,7 @@ public class Main {
 		
 //		GUI Test
 		GUI testGUI = new GUI();
+		testGUI.setLocationRelativeTo(null);
 		testGUI.setVisible(true);
 		
 //		Anlegen eines Arrays der Groeße i x j
