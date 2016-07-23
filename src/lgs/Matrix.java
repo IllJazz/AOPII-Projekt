@@ -63,6 +63,7 @@ public class Matrix {
 			throw new NoSolvableMatrixException("Matrix mit nur einer Spalte (Vektor) kann nicht gelöst werden!");
 		}
 		double[][] a = this.a;
+		double[] b = this.b;
 		double factor;
 //		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
 		for(int i = 0; i < m - 1; i++) {
@@ -74,14 +75,38 @@ public class Matrix {
 				b[j] += factor * b[i];
 			}
 		}
-		boolean zeros = true;
+//		Überprüfung auf Nullen
+		boolean[] zerolines = new boolean[a.length];
 		for(int i = 0; i < a.length; i++) {
+			int zeros = 0;
 			for(int j = 0; j < a[0].length; j++) {
-				
+				if(a[i][j] == 0) {
+					zeros++;
+				}
+			}
+			if(zeros == a[i].length) {
+				zerolines[i] = true;
+			} else {
+				zerolines[i] = false;
 			}
 		}
-		LESType type = LESType.NONE;
-		return type;
+		int counter = 0;
+		for(int i = 0; i < zerolines.length; i++) {
+			if(zerolines[i]) {
+//				falls in einer Zeile nur Nullen stehen und in b eine Zahl ungleich Null -> Ungleichung(keine Lösung)
+				if(b[i] != 0) {
+					return LESType.NONE;
+				} else {
+					counter++;
+				}
+			}
+		}
+		if(counter != 0) {
+			if(a[0].length > (zerolines.length - counter)) {
+				return LESType.MULTIPLE;
+			}
+		}
+		return LESType.ONE;
 	}
 	
 	/**
