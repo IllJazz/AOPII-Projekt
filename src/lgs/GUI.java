@@ -27,7 +27,8 @@ public class GUI extends JFrame implements ActionListener{
 	JMenu helpMenu;
 	//Menuepunkt oeffnen, schließen
 	JMenuItem openItem;
-	JMenuItem saveItem;
+	JMenuItem saveMatrixItem;
+	JMenuItem saveResultItem;
 	JMenuItem closeItem;
 	JMenuItem helpItem;
 	
@@ -66,13 +67,15 @@ public class GUI extends JFrame implements ActionListener{
 		helpMenu = new JMenu("Hilfe");
 		//Menuepunkt oeffnen
 		openItem = new JMenuItem("Öffnen");
-		saveItem = new JMenuItem("Speichern");
+		saveMatrixItem = new JMenuItem("Matrix speichern");
+		saveResultItem = new JMenuItem("Ergebnis speichern");
 		closeItem = new JMenuItem("Beenden");
 		helpItem = new JMenuItem("Hilfe");
 		
 		//Menuepunkte werden dem Datei-Menue hinzugefuegt
 		fileMenu.add(openItem);
-		fileMenu.add(saveItem);
+		fileMenu.add(saveMatrixItem);
+		fileMenu.add(saveResultItem);
 		fileMenu.add(closeItem);
 		
 		helpMenu.add(helpItem);
@@ -83,7 +86,8 @@ public class GUI extends JFrame implements ActionListener{
 		this.add(menuBar, BorderLayout.NORTH);
 		//ActionListener
 		openItem.addActionListener(this);
-		saveItem.addActionListener(this);
+		saveMatrixItem.addActionListener(this);
+		saveResultItem.addActionListener(this);
 		closeItem.addActionListener(this);
 		
 		//Matrix Eingabefeld erstellen
@@ -110,6 +114,47 @@ public class GUI extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		
+		//Berechnen GUI
+		resultLabel = new JLabel();
+		resultLabel.setText("Die Lösung des LGS lautet:");
+		size = resultLabel.getPreferredSize();
+		resultLabel.setBounds(410, 10, size.width, size.height);
+		this.panel.add(resultLabel);
+		
+		//Hier kann direkt mit der Loesungsausgabe begonnen werden
+		outMatrix = new JTextArea("Hier hinein kommt Deine Ausgabe als String, Markus");
+		outMatrix.setBounds(410, 30, 350, 120);
+		outMatrix.setVisible(true);
+		this.panel.add(outMatrix);
+		
+		JLabel residuumLabel = new JLabel("Residuum r=");
+		size = residuumLabel.getPreferredSize();
+		residuumLabel.setBounds(410, 160,size.width,size.height);
+		this.panel.add(residuumLabel);
+		outResiduum = new JTextArea("String Residuum");
+		outResiduum.setBounds(410, 180, 350, 120);
+		outResiduum.setVisible(true);
+		this.panel.add(outResiduum);
+		
+		JLabel aLabel = new JLabel("ε\u2090=");
+		size = aLabel.getPreferredSize();
+		aLabel.setBounds(410,310,size.width,30);
+		this.panel.add(aLabel);
+		outa = new JTextField("Hier der Ea String");
+		outa.setBounds(410,335, 350, 30);
+		outa.setVisible(true);
+		this.panel.add(outa);
+		
+		JLabel rLabel = new JLabel("ε\u1D63=");
+		size = rLabel.getPreferredSize();
+		rLabel.setBounds(410,380, size.width,size.height);
+		this.panel.add(rLabel);
+		outr = new JTextField("Hier der Er String");
+		outr.setBounds(410, 395, 350, 30);
+		outr.setVisible(true);
+		this.panel.add(outr);
+		
+		
 		this.add(panel);
 	}
 
@@ -123,50 +168,38 @@ public class GUI extends JFrame implements ActionListener{
 			FileIO matrix = new FileIO();
 			matrix.readString(enterMatrix.getText());
 			matrix.createMatrix();
+
+			Matrix ergebnis = new Matrix(matrix.getMatrix());	
 			
-			resultLabel = new JLabel();
-			resultLabel.setText("Die Lösung des LGS lautet:");
-			size = resultLabel.getPreferredSize();
-			resultLabel.setBounds(410, 10, size.width, size.height);
-			this.panel.add(resultLabel);
-			
-			//Hier kann direkt mit der Loesungsausgabe begonnen werden
-			outMatrix = new JTextArea("Hier hinein kommt Deine Ausgabe als String, Markus");
-			outMatrix.setBounds(410, 30, 350, 120);
-			outMatrix.setVisible(true);
-			this.panel.add(outMatrix);
-			Matrix ergebnis = new Matrix(matrix.getMatrix());			
-			outMatrix.setText(ergebnis.toString(ergebnis.solve()));
-			
-			JLabel residuumLabel = new JLabel("Residuum r=");
-			size = residuumLabel.getPreferredSize();
-			residuumLabel.setBounds(410, 160,size.width,size.height);
-			this.panel.add(residuumLabel);
-			outResiduum = new JTextArea("String Residuum");
-			outResiduum.setBounds(410, 180, 350, 120);
-			outResiduum.setVisible(true);
-			this.panel.add(outResiduum);
-			outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
-			
-			JLabel aLabel = new JLabel("ε\u2090=");
-			size = aLabel.getPreferredSize();
-			aLabel.setBounds(410,310,size.width,30);
-			this.panel.add(aLabel);
-			outa = new JTextField("Hier der Ea String");
-			outa.setBounds(410,335, 350, 30);
-			outa.setVisible(true);
-			this.panel.add(outa);
-			outa.setText(ergebnis.toString(ergebnis.getEa()));
-			
-			JLabel rLabel = new JLabel("ε\u1D63=");
-			size = rLabel.getPreferredSize();
-			rLabel.setBounds(410,380, size.width,size.height);
-			this.panel.add(rLabel);
-			outr = new JTextField("Hier der Er String");
-			outr.setBounds(410, 395, 350, 30);
-			outr.setVisible(true);
-			this.panel.add(outr);
-			outr.setText(ergebnis.toString(ergebnis.getEr()));
+			LESType type = ergebnis.getLESType();
+			switch(type){
+				case ONE:
+					outMatrix.setText(ergebnis.toString(ergebnis.solve()));
+					outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
+					outa.setText(ergebnis.toString(ergebnis.getEa()));
+					outr.setText(ergebnis.toString(ergebnis.getEr()));
+					break;
+				case NONE:
+					outMatrix.setText("Es gibt keine Lösung");
+					outResiduum.setText("-");
+					outa.setText("-");
+					outr.setText("-");
+					break;
+				case MULTIPLE:
+					outMatrix.setText("Es gibt mehr als eine Lösung");
+					outResiduum.setText("-");
+					outa.setText("-");
+					outr.setText("-");
+					break;
+			}
+				
+//			outMatrix.setText(ergebnis.toString(ergebnis.solve()));
+//		
+//			outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
+//			
+//			outa.setText(ergebnis.toString(ergebnis.getEa()));
+//			
+//			outr.setText(ergebnis.toString(ergebnis.getEr()));
 
 			this.panel.repaint();
 		}
@@ -185,9 +218,21 @@ public class GUI extends JFrame implements ActionListener{
 				System.out.println("Gewählte Datei zum Öffnen ist: " + path);
 			}
 		}
-		if (e.getSource()==this.saveItem){
+		if (e.getSource()==this.saveMatrixItem){
 			JFileChooser saveFileChooser = new JFileChooser();
 			int savePress = saveFileChooser.showDialog(null,"Matrix speichern");
+			String path="", sol = outMatrix.getText(), res=outResiduum.getText(),a= outa.getText(),r=outr.getText();
+			String solution = "Lösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
+			path = saveFileChooser.getSelectedFile().getAbsolutePath();
+			FileIO datei = new FileIO();
+			datei.writeFile(path,solution);
+			
+			if(savePress == JFileChooser.APPROVE_OPTION)	
+				System.out.println("Die Datei wurde gespeichert unter: " + path);
+		}
+		if (e.getSource()==this.saveResultItem){
+			JFileChooser saveFileChooser = new JFileChooser();
+			int savePress = saveFileChooser.showDialog(null,"Ergebnis speichern");
 			String path="", sol = outMatrix.getText(), res=outResiduum.getText(),a= outa.getText(),r=outr.getText();
 			String solution = "Lösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
 			path = saveFileChooser.getSelectedFile().getAbsolutePath();
