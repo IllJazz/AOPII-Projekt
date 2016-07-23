@@ -53,6 +53,38 @@ public class Matrix {
 	}
 	
 	/**
+	 * ermittelt die Anzahl der Lösungen aus dem LGS der Matrix
+	 * @param array double-Array, aus welchem die Matrix erzeugt werden soll
+	 * @throws NoMatrixException keine Matrix erzeugt, falls keine Elemente im Array, also m == 0 oder n == 0
+	 * 							 oder falls Zeilen unterschiedlich viele Spalten haben, also keine m x n Form
+	 */
+	public LESType getLESType() {
+		if(n < 2) {
+			throw new NoSolvableMatrixException("Matrix mit nur einer Spalte (Vektor) kann nicht gelöst werden!");
+		}
+		double[][] a = this.a;
+		double factor;
+//		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
+		for(int i = 0; i < m - 1; i++) {
+			for(int j = i + 1; j < m; j++){
+				factor = - a[j][i] / a[i][i];
+				for(int l = 0; l < n - 1; l++) {
+					a[j][l] += factor * a[i][l];
+				}
+				b[j] += factor * b[i];
+			}
+		}
+		boolean zeros = true;
+		for(int i = 0; i < a.length; i++) {
+			for(int j = 0; j < a[0].length; j++) {
+				
+			}
+		}
+		LESType type = LESType.NONE;
+		return type;
+	}
+	
+	/**
 	 * 
 	 * @return solution Lösungsvektor Matrix (LGS)
 	 * @throws NoSolvableMatrixException Matrix wird nicht gelöst, falls weniger als zwei Spalten vorhanden sind
@@ -203,6 +235,20 @@ public class Matrix {
 				}
 			}
 		}
+		return string;
+	}
+	
+	/**
+	 * Umwandlung einer double-Zahl in einen String
+	 * @param double-Zahl, welche in String umgewandelt werden soll
+	 * @return string Ausgabestring für eine double-Zahl
+	 */
+	public static String toString(double d) {
+		DecimalFormatSymbols symbol = new DecimalFormatSymbols();
+		symbol.setDecimalSeparator('.');
+		DecimalFormat df = new DecimalFormat("#0.00", symbol);
+		String string = new String();
+		string += df.format(d);
 		return string;
 	}
 	
