@@ -12,27 +12,36 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 
+ * Klasse zu Einlesen, Speichern und Verarbeiten von Dateien und Strings 
+ * zur Weiterverarbeitung in der Klasse Matrix
  * @author Ilja Hirse
  */
 public class FileIO {
 	
 	private FileReader file = null;
     private BufferedReader buff = null;
-    private List<String> lines = new ArrayList();							//zeilenweise Strings
+    private List<String> lines = new ArrayList();					//zeilenweise Strings
     private ArrayList<String[]> teil = new ArrayList<String[]>() ;	//gesplittete Strings
     private double[][] matrix ;										//fertige Matrix
-//    private String filename =""; 
-//	String matrix2="2;1;3;1\n1;2;3;4\n4;3;2;1"; //for testing only
+
+    /**
+     * Konstruktor der Klasse 	 
+     * @param 
+     * @returns
+     **/    
 	public FileIO() {
-		//readString(matrix2); //for testing only
-		//readFile();
-		//createMatrix();
 	}
 
-	
- 	public void createMatrix() {
-		  // Aufsplitten der Strings und Ablage in ArrayList[]
+    /**
+     * Erstellt einen zweidimensionalen Double Array
+     * der die einzelnen Elemente des LGS in Matrixform enthält.
+     * Daten werden aus einer String Arraylist konvertiert, 
+     * welche aus einem Semikolongetrennten String erzeugt wurde.   	 
+     * @param 
+     * @returns matrix Double Array, zur Weiterverarbeitung in der Klasse Matrix
+     **/    
+ 	public double[][] createMatrix() {
+		// Aufsplitten der Strings und Ablage in ArrayList[]
 	    for (int i =0;i<lines.size();i++) {
 			teil.add(lines.get(i).toString().split(";"));
 	    }
@@ -42,10 +51,11 @@ public class FileIO {
 	    	if(m<teil.get(i-1).length)
 	    		m=teil.get(i-1).length;
 	    	if (teil.get(i).length<teil.get(i-1).length)
-	    		System.out.println("Anzahl der Werte pro Zeile muessen gleich sein"); //throw ...
+	    		//throw ...
+	    		System.out.println("Anzahl der Werte pro Zeile muessen gleich sein"); 
 	    }
 	    
-	    // String-ArrayList in Double-Array konvertieren
+	    // String-ArrayList in zweidimensionalen Double-Array konvertieren
 	    matrix = new double[lines.size()][m];
 	    for (int j=0; j< lines.size();j++) {
 	    	for (int k=0;k<teil.get(j).length;k++) {
@@ -57,13 +67,16 @@ public class FileIO {
 				}
 	    	}
 	    }
+	    return matrix;
 	}
-	
+
+ 	/**
+     * Liest per Filereader und BufferedReader den Inhalt einer Textdatei zeilenweise in eine ArrayList<String> ein 	 
+     * @param filename String, Pfad+Dateiname der einzulesenden Datei
+     * @returns output String, zur Ausgabe des Dateiinhalts im entsprechenden Textfeld der GUI
+     **/    
 	public String readFile(String filename) {
-	//	Scanner input= new Scanner(System.in);
-	  //  System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Import des LGS an! > ");
-	  //  filename = input.next();
-	   // input.close();
+
 	    // Zeilenweises Einlesen der Datei in ArrayList
 
 		try {
@@ -94,7 +107,12 @@ public class FileIO {
 		//	for(int i=0; i<lines.size();i++)					//for testing only
 		//		System.out.println(lines.get(i).toString());	//for testing only
 	}
-
+   
+	/**
+     * Liest per BufferedReader einen String ein und speichert diesen zeilenweise in einer ArrayList<Sring> 	 
+     * @param matrix String, Matrixdaten in Stringform aus entsprechendem Textfeld der GUI
+     * @returns
+     **/	
 	public void readString(String matrix) {
 		BufferedReader reader = new BufferedReader(new StringReader(matrix));
 		try {
@@ -102,20 +120,18 @@ public class FileIO {
 			while((line =reader.readLine()) != null) {
 				lines.add(line);			
 			}
-		//	for(int i=0; i<lines.size();i++)					//for testing only
-		//		System.out.println(lines.get(i).toString());	//for testing only
-			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+    /**
+     * Speichert eine Instanz der Klasse Matrix als String in eine Textdatei	 
+     * @param matrix Matrix, zuspeichernde Instanz der Klasse Matrix
+     * @param filename String, Name der zu speichernden Datei
+     * @returns
+     **/    
 	public void writeFile(Matrix matrix, String filename) {
-		//Scanner input= new Scanner(System.in);
-		//System.out.print("Bitte geben Sie den Dateinamen (inklusive Dateiendung) für den Export des LGS an! > ");
-		//filename = input.next();
-		// input.close();
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		try {
@@ -141,6 +157,12 @@ public class FileIO {
 		}
 	}
 
+    /**
+     * Schreibt einen String in eine Textdatei und speichert diese 	 
+     * @param filename String, Pfad+Dateiname der zu speichernden Datei
+     * @param solution String, zu speichernder String
+     * @returns
+     **/    
 	public void writeFile(String filename, String solution) {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
@@ -166,6 +188,12 @@ public class FileIO {
 			e.printStackTrace();
 		}
 	}
+	
+    /**
+     * Getterfunktion für den zweidimensionalen Double Array, der die LGS Daten enthält 	 
+     * @param 
+     * @returns matrix Double[][], enthält LGS Daten x1-xn und b1-bn 
+     **/    
 	public double[][] getMatrix() {
 		return matrix;
 		
