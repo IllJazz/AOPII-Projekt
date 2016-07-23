@@ -146,6 +146,7 @@ public class GUI extends JFrame implements ActionListener{
 			outResiduum.setBounds(410, 180, 350, 120);
 			outResiduum.setVisible(true);
 			this.panel.add(outResiduum);
+			outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
 			
 			JLabel aLabel = new JLabel("ε\u2090=");
 			size = aLabel.getPreferredSize();
@@ -155,6 +156,7 @@ public class GUI extends JFrame implements ActionListener{
 			outa.setBounds(410,335, 350, 30);
 			outa.setVisible(true);
 			this.panel.add(outa);
+			outResiduum.setText(ergebnis.toString(ergebnis.getEa()));
 			
 			JLabel rLabel = new JLabel("ε\u1D63=");
 			size = rLabel.getPreferredSize();
@@ -164,6 +166,7 @@ public class GUI extends JFrame implements ActionListener{
 			outr.setBounds(410, 395, 350, 30);
 			outr.setVisible(true);
 			this.panel.add(outr);
+			outResiduum.setText(ergebnis.toString(ergebnis.getEr()));
 
 			this.panel.repaint();
 		}
