@@ -1,7 +1,7 @@
 package lgs;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Klasse zur Verwaltung und Lösung einer Matrix
@@ -120,7 +120,7 @@ public class Matrix {
 		}
 //		Lösung aus den einzelnen Zeilen errechnen
 		for(int i = 0; i < m; i ++) {
-			solution[i] = b[i] / a[i][i];
+			solution[i] = round(b[i] / a[i][i], 2);
 		}
 		return solution;
 	}
@@ -139,7 +139,7 @@ public class Matrix {
 		}
 		double[] residuum = new double[x.length];
 		for(int i = 0; i < x.length; i++) {
-			residuum[i] = b[i] - br[i];
+			residuum[i] = round(b[i], 2) - br[i];
 		}
 		return residuum;
 	}
@@ -244,11 +244,8 @@ public class Matrix {
 	 * @return string Ausgabestring für eine double-Zahl
 	 */
 	public static String toString(double d) {
-		DecimalFormatSymbols symbol = new DecimalFormatSymbols();
-		symbol.setDecimalSeparator('.');
-		DecimalFormat df = new DecimalFormat("#0.00", symbol);
 		String string = new String();
-		string += df.format(d);
+		string += round(d ,6);
 		return string;
 	}
 	
@@ -258,14 +255,11 @@ public class Matrix {
 	 * @return string Ausgabestring für ein double-Array
 	 */
 	public static String toString(double[] array) {
-		DecimalFormatSymbols symbol = new DecimalFormatSymbols();
-		symbol.setDecimalSeparator('.');
-		DecimalFormat df = new DecimalFormat("#0.00", symbol);
 		String string = new String();
 		int n = 0;
 		for(double i: array) {
 			n++;
-			string += "[ " + df.format(i) + " ]";
+			string += "[ " + round(i, 6) + " ]";
 			if(n < array.length) {
 				string += "\n";
 			}
@@ -279,16 +273,13 @@ public class Matrix {
 	 * @return string Ausgabestring für ein zweidimensionales double-Array
 	 */
 	public static String toString(double[][] array) {
-		DecimalFormatSymbols symbol = new DecimalFormatSymbols();
-		symbol.setDecimalSeparator('.');
-		DecimalFormat df = new DecimalFormat("#0.00", symbol);
 		String string = new String();
 		int n = 0;
 		for(double[] i: array) {
 			string += "[";
 			n++;
 			for(double j : i) {
-				string += " " + df.format(j);
+				string += " " + round(j, 6);
 			}
 			string += " ]";
 			if(n < array.length) {
@@ -296,6 +287,19 @@ public class Matrix {
 			}
 		}
 		return string;
+	}
+	
+	/**
+	 * Runden einer double-Zahl auf n Stellen
+	 * @param value double-Zahl
+	 * 		  n Anzahl Nachkommastellen
+	 * @return bd.doubleValue() double-Zahl mit Wert von value und n Nachkommastellen
+	 */
+	public static double round(double value, int n) {
+	    if (n < 0) throw new IllegalArgumentException();
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(n, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 	
 }
