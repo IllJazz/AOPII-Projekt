@@ -66,7 +66,7 @@ public class GUI extends JFrame implements ActionListener{
 		//Menue Hilfe wird erzeugt
 		helpMenu = new JMenu("Hilfe");
 		//Menuepunkt oeffnen
-		openItem = new JMenuItem("Öffnen");
+		openItem = new JMenuItem("Matrix laden");
 		saveMatrixItem = new JMenuItem("Matrix speichern");
 		saveResultItem = new JMenuItem("Ergebnis speichern");
 		closeItem = new JMenuItem("Beenden");
