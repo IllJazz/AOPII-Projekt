@@ -119,7 +119,7 @@ public class GUI extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 		if(e.getSource()==this.calcButton){
-			JOptionPane.showMessageDialog(null, "Hier muss mit Ilja zum einlesen verknuepft werden und Markus das Ergebnis ausgeben");
+			JOptionPane.showMessageDialog(null, "Ergebnis wird berechnet...");
 			FileIO matrix = new FileIO();
 			matrix.readString(enterMatrix.getText());
 			matrix.createMatrix();
@@ -136,8 +136,7 @@ public class GUI extends JFrame implements ActionListener{
 			outMatrix.setVisible(true);
 			this.panel.add(outMatrix);
 			Matrix ergebnis = new Matrix(matrix.getMatrix());			
-			ergebnis.solve();
-			outMatrix.setText(ergebnis.toString());
+			outMatrix.setText(ergebnis.toString(ergebnis.solve()));
 			
 			JLabel residuumLabel = new JLabel("Residuum r=");
 			size = residuumLabel.getPreferredSize();
@@ -147,6 +146,7 @@ public class GUI extends JFrame implements ActionListener{
 			outResiduum.setBounds(410, 180, 350, 120);
 			outResiduum.setVisible(true);
 			this.panel.add(outResiduum);
+			outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
 			
 			JLabel aLabel = new JLabel("ε\u2090=");
 			size = aLabel.getPreferredSize();
@@ -156,6 +156,7 @@ public class GUI extends JFrame implements ActionListener{
 			outa.setBounds(410,335, 350, 30);
 			outa.setVisible(true);
 			this.panel.add(outa);
+			outResiduum.setText(ergebnis.toString(ergebnis.getEa()));
 			
 			JLabel rLabel = new JLabel("ε\u1D63=");
 			size = rLabel.getPreferredSize();
@@ -165,6 +166,7 @@ public class GUI extends JFrame implements ActionListener{
 			outr.setBounds(410, 395, 350, 30);
 			outr.setVisible(true);
 			this.panel.add(outr);
+			outResiduum.setText(ergebnis.toString(ergebnis.getEr()));
 
 			this.panel.repaint();
 		}
@@ -186,10 +188,14 @@ public class GUI extends JFrame implements ActionListener{
 		if (e.getSource()==this.saveItem){
 			JFileChooser saveFileChooser = new JFileChooser();
 			int savePress = saveFileChooser.showDialog(null,"Matrix speichern");
-			String path="";
+			String path="", sol = outMatrix.getText(), res=outResiduum.getText(),a= outa.getText(),r=outr.getText();
+			String solution = "Lösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
 			path = saveFileChooser.getSelectedFile().getAbsolutePath();
+			FileIO datei = new FileIO();
+			datei.writeFile(path,solution);
+			
 			if(savePress == JFileChooser.APPROVE_OPTION)	
-				System.out.println("Gewählte Datei ist: " + path);
+				System.out.println("Die Datei wurde gespeichert unter: " + path);
 		}
 		if(e.getSource()==this.closeItem){
 			System.exit(0);

@@ -140,13 +140,32 @@ public class FileIO {
 			e.printStackTrace();
 		}
 	}
-/*	
-	public String stringToGUI() {
-		String output="";
-		lines.size();
-		return output;
+
+	public void writeFile(String filename, String solution) {
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		try {
+			fw = new FileWriter(filename);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    bw = new BufferedWriter(fw);
+
+	    try {
+			bw.write(solution);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	    try {
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-*/
 	public double[][] getMatrix() {
 		return matrix;
 		
