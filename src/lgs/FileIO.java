@@ -131,7 +131,7 @@ public class FileIO {
      * @param filename String, Name der zu speichernden Datei
      * @returns
      **/    
-	public void writeFile(Matrix matrix, String filename) {
+	public void writeFile(String filename, Matrix matrix) {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		try {
