@@ -171,35 +171,35 @@ public class GUI extends JFrame implements ActionListener{
 
 			Matrix ergebnis = new Matrix(matrix.getMatrix());	
 			
-			LESType type = ergebnis.getLESType();
-			switch(type){
-				case ONE:
-					outMatrix.setText(ergebnis.toString(ergebnis.solve()));
-					outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
-					outa.setText(ergebnis.toString(ergebnis.getEa()));
-					outr.setText(ergebnis.toString(ergebnis.getEr()));
-					break;
-				case NONE:
-					outMatrix.setText("Es gibt keine Lösung");
-					outResiduum.setText("-");
-					outa.setText("-");
-					outr.setText("-");
-					break;
-				case MULTIPLE:
-					outMatrix.setText("Es gibt mehr als eine Lösung");
-					outResiduum.setText("-");
-					outa.setText("-");
-					outr.setText("-");
-					break;
-			}
+//			LESType type = ergebnis.getLESType();
+//			switch(type){
+//				case ONE:
+//					outMatrix.setText(ergebnis.toString(ergebnis.solve()));
+//					outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
+//					outa.setText(ergebnis.toString(ergebnis.getEa()));
+//					outr.setText(ergebnis.toString(ergebnis.getEr()));
+//					break;
+//				case NONE:
+//					outMatrix.setText("Es gibt keine Lösung");
+//					outResiduum.setText("-");
+//					outa.setText("-");
+//					outr.setText("-");
+//					break;
+//				case MULTIPLE:
+//					outMatrix.setText("Es gibt mehr als eine Lösung");
+//					outResiduum.setText("-");
+//					outa.setText("-");
+//					outr.setText("-");
+//					break;
+//			}
 				
-//			outMatrix.setText(ergebnis.toString(ergebnis.solve()));
-//		
-//			outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
-//			
-//			outa.setText(ergebnis.toString(ergebnis.getEa()));
-//			
-//			outr.setText(ergebnis.toString(ergebnis.getEr()));
+			outMatrix.setText(ergebnis.toString(ergebnis.solve()));
+		
+			outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
+			
+			outa.setText(ergebnis.toString(ergebnis.getEa()));
+			
+			outr.setText(ergebnis.toString(ergebnis.getEr()));
 
 			this.panel.repaint();
 		}
