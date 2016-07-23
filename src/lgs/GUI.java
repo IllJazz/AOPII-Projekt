@@ -122,7 +122,7 @@ public class GUI extends JFrame implements ActionListener{
 		this.panel.add(resultLabel);
 		
 		//Hier kann direkt mit der Loesungsausgabe begonnen werden
-		outMatrix = new JTextArea("Hier hinein kommt Deine Ausgabe als String, Markus");
+		outMatrix = new JTextArea("Bitte geben Sie zuerst die Matrix Ihres LGS ein");
 		outMatrix.setBounds(410, 30, 350, 120);
 		outMatrix.setVisible(true);
 		this.panel.add(outMatrix);
@@ -131,7 +131,7 @@ public class GUI extends JFrame implements ActionListener{
 		size = residuumLabel.getPreferredSize();
 		residuumLabel.setBounds(410, 160,size.width,size.height);
 		this.panel.add(residuumLabel);
-		outResiduum = new JTextArea("String Residuum");
+		outResiduum = new JTextArea("Bitte geben Sie zuerst die Matrix Ihres LGS ein");
 		outResiduum.setBounds(410, 180, 350, 120);
 		outResiduum.setVisible(true);
 		this.panel.add(outResiduum);
@@ -140,7 +140,7 @@ public class GUI extends JFrame implements ActionListener{
 		size = aLabel.getPreferredSize();
 		aLabel.setBounds(410,310,size.width,30);
 		this.panel.add(aLabel);
-		outa = new JTextField("Hier der Ea String");
+		outa = new JTextField("Bitte geben Sie zuerst die Matrix Ihres LGS ein");
 		outa.setBounds(410,335, 350, 30);
 		outa.setVisible(true);
 		this.panel.add(outa);
@@ -149,7 +149,7 @@ public class GUI extends JFrame implements ActionListener{
 		size = rLabel.getPreferredSize();
 		rLabel.setBounds(410,380, size.width,size.height);
 		this.panel.add(rLabel);
-		outr = new JTextField("Hier der Er String");
+		outr = new JTextField("Bitte geben Sie zuerst die Matrix Ihres LGS ein");
 		outr.setBounds(410, 395, 350, 30);
 		outr.setVisible(true);
 		this.panel.add(outr);
