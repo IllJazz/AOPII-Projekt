@@ -86,10 +86,59 @@ public class Matrix {
 				b[j] += factor * b[i];
 			}
 		}
+//		Lösung aus den einzelnen Zeilen errechnen
 		for(int i = 0; i < m; i ++) {
 			solution[i] = b[i] / a[i][i];
 		}
 		return solution;
+	}
+	
+	/**
+	 * Errechnung des Residuums des gelösten LGS
+	 * @return residuum Residuum aus der Lösung des LGS
+	 */
+	public double[] getResiduum() {
+		double[] x = solve();
+		double[] br = new double[x.length];
+		for(int i = 0; i < x.length; i++) {
+			for(int j = 0; j < x.length; j++) {
+				br[i] += a[i][j] * x[j];
+			}
+		}
+		double[] residuum = new double[x.length];
+		for(int i = 0; i < x.length; i++) {
+			residuum[i] = b[i] - br[i];
+		}
+		return residuum;
+	}
+	
+	/**
+	 * Errechnung εa des gelösten LGS
+	 * @return ea εa aus dem Residuum des LGS
+	 */
+	public double getEa() {
+		double[] residuum = getResiduum();
+		double ea = 0;
+		for(int i = 0; i < residuum.length; i++) {
+			ea += residuum[i] * residuum[i];
+		}
+		ea = Math.sqrt(ea);
+		return ea;
+	}
+	
+	/**
+	 * Errechnung εr des gelösten LGS
+	 * @return er εr aus dem Residuum und Vektor b des LGS
+	 */
+	public double getEr() {
+		double ea = getEa();
+		double er = 0;
+		for(int i = 0; i < b.length; i++) {
+			er += b[i] * b[i];
+		}
+		er = Math.sqrt(er);
+		er = ea / er;
+		return er;
 	}
 	
 	/**
