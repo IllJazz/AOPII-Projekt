@@ -41,6 +41,9 @@ public class FileIO {
      * @returns matrix Double Array, zur Weiterverarbeitung in der Klasse Matrix
      **/    
  	public double[][] createMatrix() {
+ 	 	if (lines.isEmpty()) {
+ 	 		return null;
+ 		}
 		// Aufsplitten der Strings und Ablage in ArrayList[]
 	    for (int i =0;i<lines.size();i++) {
 			teil.add(lines.get(i).toString().split(";"));
@@ -50,19 +53,21 @@ public class FileIO {
 	    for (int i =1;i<lines.size();i++) {
 	    	if(m<teil.get(i-1).length)
 	    		m=teil.get(i-1).length;
-	    	if (teil.get(i).length<teil.get(i-1).length)
-	    		//throw ...
-	    		System.out.println("Anzahl der Werte pro Zeile muessen gleich sein"); 
+	    	if (teil.get(i).length<teil.get(i-1).length) {
+	    		System.out.println("Anzahl der Einträge pro Zeile stimmt nicht überein");
+	    		return null; 
+	    	}
 	    }
+	    		
 	    
 	    // String-ArrayList in zweidimensionalen Double-Array konvertieren
 	    matrix = new double[lines.size()][m];
 	    for (int j=0; j< lines.size();j++) {
 	    	for (int k=0;k<teil.get(j).length;k++) {
 	    		try {
-					matrix[j][k] = Double.parseDouble(teil.get(j)[k]);
+	    			//outofbounds bei nur einer zeile
+	    			matrix[j][k] = Double.parseDouble(teil.get(j)[k]);
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	    	}
