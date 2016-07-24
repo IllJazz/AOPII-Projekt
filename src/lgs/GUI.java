@@ -164,12 +164,10 @@ public class GUI extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 		if(e.getSource()==this.calcButton){
-			JOptionPane.showMessageDialog(null, "Ergebnis wird berechnet...");
+			JOptionPane.showMessageDialog(null, "Das Ergebnis wurde berechnet.");
 			FileIO matrix = new FileIO();
 			matrix.readString(enterMatrix.getText());
-			matrix.createMatrix();
-
-			Matrix ergebnis = new Matrix(matrix.getMatrix());	
+			Matrix ergebnis = new Matrix(matrix.createMatrix());	
 			
 //			LESType type = ergebnis.getLESType();
 //			switch(type){
@@ -221,11 +219,10 @@ public class GUI extends JFrame implements ActionListener{
 		if (e.getSource()==this.saveMatrixItem){
 			JFileChooser saveFileChooser = new JFileChooser();
 			int savePress = saveFileChooser.showDialog(null,"Matrix speichern");
-			String path="", sol = outMatrix.getText(), res=outResiduum.getText(),a= outa.getText(),r=outr.getText();
-			String solution = "Lösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
+			String path="", mat = enterMatrix.getText();
 			path = saveFileChooser.getSelectedFile().getAbsolutePath();
 			FileIO datei = new FileIO();
-			datei.writeFile(path,solution);
+			datei.writeFile(path,mat);
 			
 			if(savePress == JFileChooser.APPROVE_OPTION)	
 				System.out.println("Die Datei wurde gespeichert unter: " + path);
@@ -233,8 +230,8 @@ public class GUI extends JFrame implements ActionListener{
 		if (e.getSource()==this.saveResultItem){
 			JFileChooser saveFileChooser = new JFileChooser();
 			int savePress = saveFileChooser.showDialog(null,"Ergebnis speichern");
-			String path="", sol = outMatrix.getText(), res=outResiduum.getText(),a= outa.getText(),r=outr.getText();
-			String solution = "Lösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
+			String path="", mat = enterMatrix.getText(), sol = outMatrix.getText(), res=outResiduum.getText(),a= outa.getText(),r=outr.getText();
+			String solution = "Ausgangsmatrix:\n\n"+mat+"\nLösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
 			path = saveFileChooser.getSelectedFile().getAbsolutePath();
 			FileIO datei = new FileIO();
 			datei.writeFile(path,solution);
