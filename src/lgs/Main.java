@@ -9,11 +9,10 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-//		GUI Test
-		GUI testGUI = new GUI();
-		testGUI.setLocationRelativeTo(null);
-		testGUI.setVisible(true);
+		//Ausführen des GUI
+		GUI GUI = new GUI();
+		GUI.setLocationRelativeTo(null);
+		GUI.setVisible(true);
 		
 //		Anlegen eines Arrays der Groeße i x j
 //		zufällige Belegung mit Werten zwischen 0 und 100
