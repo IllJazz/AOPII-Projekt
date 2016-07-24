@@ -50,17 +50,21 @@ public class FileIO {
 	    }
 	    // Ueberpruefung ob jede Zeile gleiche Anzahl an Eintraegen hat
 	    //
-	    int m=0;
+	    int n=0;
 	    for (int i =1;i<lines.size();i++) {
-	    	if(m<teil.get(i-1).length)
-	    		m=teil.get(i-1).length;
+	    	if(n<teil.get(i-1).length)
+	    		n=teil.get(i-1).length;
 	    	if (teil.get(i).length<teil.get(i-1).length) {
 	    		System.out.println("Anzahl der Einträge pro Zeile stimmt nicht überein");
 	    		return null; 
 	    	}
 	    }
-
-	
+	    int m=0;
+	    for (int i =0;i<lines.size();i++) {
+	    	if (m<teil.get(i).length)
+	    		m=teil.get(i).length;
+	    }
+	    System.out.println(m);
 	    // String-ArrayList in zweidimensionalen Double-Array konvertieren
 	    matrix = new double[lines.size()][m];
 	    for (int j=0; j< lines.size();j++) {
