@@ -1,9 +1,8 @@
 eclipse.preferences.version=1
-encoding//src/lgs/Main.java=UTF-8
-eclipse.preferences.version=1
 encoding//src/lgs/GUI.java=UTF-8
 encoding//src/lgs/Main.java=UTF-8
 encoding//src/lgs/Matrix.java=UTF-8
 encoding//src/lgs/MatrixException.java=UTF-8
 encoding//src/lgs/NoMatrixException.java=UTF-8
 encoding//src/lgs/NoSolvableMatrixException.java=UTF-8
+encoding/Form\ der\ Eingabe.txt=UTF-8
