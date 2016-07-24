@@ -164,42 +164,50 @@ public class GUI extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 		if(e.getSource()==this.calcButton){
-			JOptionPane.showMessageDialog(null, "Das Ergebnis wurde berechnet.");
+			
 			FileIO matrix = new FileIO();
 			matrix.readString(enterMatrix.getText());
-			Matrix ergebnis = new Matrix(matrix.createMatrix());	
+			Matrix ergebnis = new Matrix(matrix.createMatrix());
 			
-//			LESType type = ergebnis.getLESType();
-//			switch(type){
-//				case ONE:
-//					outMatrix.setText(ergebnis.toString(ergebnis.solve()));
-//					outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
-//					outa.setText(ergebnis.toString(ergebnis.getEa()));
-//					outr.setText(ergebnis.toString(ergebnis.getEr()));
-//					break;
-//				case NONE:
-//					outMatrix.setText("Es gibt keine Lösung");
-//					outResiduum.setText("-");
-//					outa.setText("-");
-//					outr.setText("-");
-//					break;
-//				case MULTIPLE:
-//					outMatrix.setText("Es gibt mehr als eine Lösung");
-//					outResiduum.setText("-");
-//					outa.setText("-");
-//					outr.setText("-");
-//					break;
-//			}
+			if(ergebnis == null){
+				JOptionPane.showMessageDialog(null, "Das Ergebnis wurde berechnet.");
+			}
+			
+			else {
 				
-			outMatrix.setText(ergebnis.toString(ergebnis.solve()));
-		
-			outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
+//				LESType type = ergebnis.getLESType();
+//				switch(type){
+//					case ONE:
+//						outMatrix.setText(ergebnis.toString(ergebnis.solve()));
+//						outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
+//						outa.setText(ergebnis.toString(ergebnis.getEa()));
+//						outr.setText(ergebnis.toString(ergebnis.getEr()));
+//						break;
+//					case NONE:
+//						outMatrix.setText("Es gibt keine Lösung");
+//						outResiduum.setText("-");
+//						outa.setText("-");
+//						outr.setText("-");
+//						break;
+//					case MULTIPLE:
+//						outMatrix.setText("Es gibt mehr als eine Lösung");
+//						outResiduum.setText("-");
+//						outa.setText("-");
+//						outr.setText("-");
+//						break;
+//				}
+					
+				outMatrix.setText(ergebnis.toString(ergebnis.solve()));
 			
-			outa.setText(ergebnis.toString(ergebnis.getEa()));
-			
-			outr.setText(ergebnis.toString(ergebnis.getEr()));
+				outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
+				
+				outa.setText(ergebnis.toString(ergebnis.getEa()));
+				
+				outr.setText(ergebnis.toString(ergebnis.getEr()));
 
-			this.panel.repaint();
+				this.panel.repaint();	
+			}
+
 		}
 		
 		if (e.getSource()==this.closeButton){
