@@ -62,13 +62,9 @@ public class FileIO {
 	
 	    // String-ArrayList in zweidimensionalen Double-Array konvertieren
 	    matrix = new double[lines.size()][m];
-	    System.out.println(lines.size()+" "+m);
 	    for (int j=0; j< lines.size();j++) {
-	    	System.out.println(teil.get(j).length);
 	    	for (int k=0;k<m;k++) {
 	    		try {
-	    			//outofbounds bei nur einer zeile
-	    			System.out.println("j="+j+"k="+k);
 	    			matrix[j][k] = Double.parseDouble(teil.get(j)[k]);
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
