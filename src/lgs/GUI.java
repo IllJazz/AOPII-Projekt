@@ -139,7 +139,7 @@ public class GUI extends JFrame implements ActionListener{
 		outResiduum.setVisible(true);
 		this.panel.add(outResiduum);
 		
-		JLabel aLabel = new JLabel("ε\u2090=");
+		JLabel aLabel = new JLabel("εa=");
 		size = aLabel.getPreferredSize();
 		aLabel.setBounds(410,310,size.width,30);
 		this.panel.add(aLabel);
@@ -148,7 +148,7 @@ public class GUI extends JFrame implements ActionListener{
 		outa.setVisible(true);
 		this.panel.add(outa);
 		
-		JLabel rLabel = new JLabel("ε\u1D63=");
+		JLabel rLabel = new JLabel("εr=");
 		size = rLabel.getPreferredSize();
 		rLabel.setBounds(410,380, size.width,size.height);
 		this.panel.add(rLabel);
