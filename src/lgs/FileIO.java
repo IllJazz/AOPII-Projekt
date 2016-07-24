@@ -49,6 +49,7 @@ public class FileIO {
 			teil.add(lines.get(i).toString().split(";"));
 	    }
 	    // Ueberpruefung ob jede Zeile gleiche Anzahl an Eintraegen hat
+	    //
 	    int m=0;
 	    for (int i =1;i<lines.size();i++) {
 	    	if(m<teil.get(i-1).length)
