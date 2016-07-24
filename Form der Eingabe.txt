@@ -1,4 +1,4 @@
-Das zu lösende LGS kann über die Funktion Datei>Öffnen aus einer Textdatei eingelesen werden,
+﻿Das zu lösende LGS kann über die Funktion Datei>Öffnen aus einer Textdatei eingelesen werden,
 oder per Eingabe über das große Textfeld im linken Bereich der GUI.
 
 Die Form der Eingabe unterliegt dabei jeweils den folgenden Konventionen:

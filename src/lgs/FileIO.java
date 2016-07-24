@@ -20,7 +20,7 @@ public class FileIO {
 	
 	private FileReader file = null;
     private BufferedReader buff = null;
-    private List<String> lines = new ArrayList();					//zeilenweise Strings
+    private List<String> lines = new ArrayList<String>();			//zeilenweise Strings
     private ArrayList<String[]> teil = new ArrayList<String[]>() ;	//gesplittete Strings
     private double[][] matrix ;										//fertige Matrix
 
@@ -34,7 +34,7 @@ public class FileIO {
 
     /**
      * Erstellt einen zweidimensionalen Double Array
-     * der die einzelnen Elemente des LGS in Matrixform enth‰lt.
+     * der die einzelnen Elemente des LGS in Matrixform enth√§lt.
      * Daten werden aus einer String Arraylist konvertiert, 
      * welche aus einem Semikolongetrennten String erzeugt wurde.   	 
      * @param 
@@ -54,18 +54,21 @@ public class FileIO {
 	    	if(m<teil.get(i-1).length)
 	    		m=teil.get(i-1).length;
 	    	if (teil.get(i).length<teil.get(i-1).length) {
-	    		System.out.println("Anzahl der Eintr‰ge pro Zeile stimmt nicht ¸berein");
+	    		System.out.println("Anzahl der Eintr√§ge pro Zeile stimmt nicht √ºberein");
 	    		return null; 
 	    	}
 	    }
-	    		
-	    
+
+	
 	    // String-ArrayList in zweidimensionalen Double-Array konvertieren
 	    matrix = new double[lines.size()][m];
+	    System.out.println(lines.size()+" "+m);
 	    for (int j=0; j< lines.size();j++) {
-	    	for (int k=0;k<teil.get(j).length;k++) {
+	    	System.out.println(teil.get(j).length);
+	    	for (int k=0;k<m;k++) {
 	    		try {
 	    			//outofbounds bei nur einer zeile
+	    			System.out.println("j="+j+"k="+k);
 	    			matrix[j][k] = Double.parseDouble(teil.get(j)[k]);
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
@@ -195,9 +198,9 @@ public class FileIO {
 	}
 	
     /**
-     * Getterfunktion f¸r den zweidimensionalen Double Array, der die LGS Daten enth‰lt 	 
+     * Getterfunktion f√ºr den zweidimensionalen Double Array, der die LGS Daten enth√§lt 	 
      * @param 
-     * @returns matrix Double[][], enth‰lt LGS Daten x1-xn und b1-bn 
+     * @returns matrix Double[][], enth√§lt LGS Daten x1-xn und b1-bn 
      **/    
 	public double[][] getMatrix() {
 		return matrix;
