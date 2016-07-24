@@ -14,6 +14,8 @@ import javax.swing.*;
 
 public class GUI extends JFrame implements ActionListener{
 
+	private static final long serialVersionUID = -7697154416089813186L;
+	
 	JLabel label;
 	JLabel resultLabel;
 	
@@ -172,10 +174,10 @@ public class GUI extends JFrame implements ActionListener{
 				LESType type = ergebnis.getLESType();
 				switch(type){
 					case ONE:
-						outMatrix.setText(ergebnis.toString(ergebnis.solve()));
-						outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
-						outa.setText(ergebnis.toString(ergebnis.getEa()));
-						outr.setText(ergebnis.toString(ergebnis.getEr()));
+						outMatrix.setText(Matrix.toString(ergebnis.solve()));
+						outResiduum.setText(Matrix.toString(ergebnis.getResiduum()));
+						outa.setText(Matrix.toString(ergebnis.getEa()));
+						outr.setText(Matrix.toString(ergebnis.getEr()));
 						break;
 					case NONE:
 						outMatrix.setText("Es gibt keine Lösung");
@@ -190,14 +192,6 @@ public class GUI extends JFrame implements ActionListener{
 						outr.setText("-");
 						break;
 				}
-					
-				outMatrix.setText(ergebnis.toString(ergebnis.solve()));
-			
-				outResiduum.setText(ergebnis.toString(ergebnis.getResiduum()));
-				
-				outa.setText(ergebnis.toString(ergebnis.getEa()));
-				
-				outr.setText(ergebnis.toString(ergebnis.getEr()));
 				
 				JOptionPane.showMessageDialog(null, "Das Ergebnis wurde berechnet.");
 	
