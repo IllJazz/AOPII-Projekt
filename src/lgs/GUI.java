@@ -91,6 +91,7 @@ public class GUI extends JFrame implements ActionListener{
 		saveMatrixItem.addActionListener(this);
 		saveResultItem.addActionListener(this);
 		closeItem.addActionListener(this);
+		helpItem.addActionListener(this);
 		
 		//Matrix Eingabefeld erstellen
 		enterMatrix = new JTextArea();
@@ -233,7 +234,7 @@ public class GUI extends JFrame implements ActionListener{
 			JFileChooser saveFileChooser = new JFileChooser();
 			int savePress = saveFileChooser.showDialog(null,"Ergebnis speichern");
 			String path="", mat = enterMatrix.getText(), sol = outMatrix.getText(), res=outResiduum.getText(),a= outa.getText(),r=outr.getText();
-			String solution = "Ausgangsmatrix:\n\n"+mat+"\nLösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
+			String solution = "\nAusgangsmatrix:\n\n"+mat+"\nLösungsvektor:\n\n"+sol+"\n\nResiduum:\n\n"+res+"\n\nea:\n\n"+a+"\n\ner:\n\n"+r;
 			path = saveFileChooser.getSelectedFile().getAbsolutePath();
 			FileIO datei = new FileIO();
 			datei.writeFile(path,solution);
@@ -250,8 +251,5 @@ public class GUI extends JFrame implements ActionListener{
 		
 		
 	}
-	
-	
-	// ε
 
 }

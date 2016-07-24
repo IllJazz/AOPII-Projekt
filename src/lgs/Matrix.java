@@ -101,10 +101,8 @@ public class Matrix {
 				}
 			}
 		}
-		if(counter != 0) {
-			if(a[0].length > (zerolines.length - counter)) {
-				return LESType.MULTIPLE;
-			}
+		if(a[0].length > (zerolines.length - counter)) {
+			return LESType.MULTIPLE;
 		}
 		return LESType.ONE;
 	}
