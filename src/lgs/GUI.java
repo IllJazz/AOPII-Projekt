@@ -63,7 +63,7 @@ public class GUI extends JFrame implements ActionListener{
 	
 	
 	public GUI(){
-		this.setTitle("Matrix");
+		this.setTitle("LGS-Löser");
 		this.setSize(800,600);
 		panel = new JPanel();
 		//ohne Layoutmanager - um benutzerdefinierter zu arbeiten
@@ -278,10 +278,10 @@ public class GUI extends JFrame implements ActionListener{
 		}
 		//Hilfe Datei oeffnen
 		if(e.getSource()==this.helpItem){
-			JOptionPane.showMessageDialog(null, "Hier kommt Ilja seine Beschreibung rein");
+			JOptionPane.showMessageDialog(null, "Hier kommt Ilja seine Beschreibung rein", "Hilfe", 1);
 		}
 		if(e.getSource()==this.ueberItem){
-			JOptionPane.showMessageDialog(null, "© Juli 2016 von Ilja Hirse, Markus Müller und Rick Werner");
+			JOptionPane.showMessageDialog(null, "© Juli 2016 von Ilja Hirse, Markus Müller und Rick Werner", "Über", 1);
 		}
 	}
 }
