@@ -245,7 +245,8 @@ public class GUI extends JFrame implements ActionListener{
 			System.exit(0);
 		}
 		if(e.getSource()==this.helpItem){
-			JOptionPane.showMessageDialog(null, "Hier kommt Ilja seine Beschreibung rein");
+			FileIO help = new FileIO();
+			JOptionPane.showMessageDialog(null, help.readFile());
 		}
 		
 		
