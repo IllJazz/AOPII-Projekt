@@ -37,6 +37,8 @@ public class GUI extends JFrame implements ActionListener{
 	JMenu helpMenu;
 	//Menuepunkt "Hilfe"
 	JMenuItem helpItem;
+	//Menuepunkt "Ueber"
+	JMenuItem ueberItem;
 	
 	//"Matrix berechnen"-Knopf - berechnet die eingegebene Matrix
 	JButton calcButton;
@@ -81,6 +83,7 @@ public class GUI extends JFrame implements ActionListener{
 		saveResultItem = new JMenuItem("Ergebnis speichern");
 		closeItem = new JMenuItem("Beenden");
 		helpItem = new JMenuItem("Hilfe");
+		ueberItem = new JMenuItem("Über");
 		
 		//Menuepunkte werden dem Datei-Menue hinzugefuegt
 		fileMenu.add(openItem);
@@ -90,6 +93,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		//Menuepunkt "Hilfe" wird dem Hilfe-Menue hinzugefuegt
 		helpMenu.add(helpItem);
+		helpMenu.add(ueberItem);
 		
 		//Datei und Hilfe - Menue werden der Menueleiste hinzugefuegt
 		menuBar.add(fileMenu);
@@ -104,6 +108,8 @@ public class GUI extends JFrame implements ActionListener{
 		saveResultItem.addActionListener(this);
 		closeItem.addActionListener(this);
 		helpItem.addActionListener(this);
+		ueberItem.addActionListener(this);
+		
 		
 		
 		//Matrix Eingabefeld
@@ -273,6 +279,9 @@ public class GUI extends JFrame implements ActionListener{
 		//Hilfe Datei oeffnen
 		if(e.getSource()==this.helpItem){
 			JOptionPane.showMessageDialog(null, "Hier kommt Ilja seine Beschreibung rein");
-		}	
+		}
+		if(e.getSource()==this.ueberItem){
+			JOptionPane.showMessageDialog(null, "© Juli 2016 von Ilja Hirse, Markus Müller und Rick Werner");
+		}
 	}
 }
