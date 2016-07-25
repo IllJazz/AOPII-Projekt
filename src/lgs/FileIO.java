@@ -62,7 +62,7 @@ public class FileIO {
 	    	if (m<teil.get(i).length)
 	    		m=teil.get(i).length;
 	    }
-	    System.out.println(m);
+//	    System.out.println(m);
 	    // String-ArrayList in zweidimensionalen Double-Array konvertieren
 	    matrix = new double[lines.size()][m];
 	    for (int j=0; j< lines.size();j++) {
