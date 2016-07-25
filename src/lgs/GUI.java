@@ -281,7 +281,7 @@ public class GUI extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Hier kommt Ilja seine Beschreibung rein", "Hilfe", 1);
 		}
 		if(e.getSource()==this.ueberItem){
-			JOptionPane.showMessageDialog(null, "© Juli 2016 von Ilja Hirse, Markus Müller und Rick Werner", "Über", 1);
+			JOptionPane.showMessageDialog(null, "Erschaffen im Juli 2016 von Ilja Hirse, Markus Müller und Rick Werner", "Über", 1);
 		}
 	}
 }
