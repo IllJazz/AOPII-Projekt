@@ -294,27 +294,11 @@ public class GUI extends JFrame implements ActionListener{
 		if(e.getSource()==this.closeItem){
 			System.exit(0);
 		}
-		//Hilfe Datei oeffnen
+		//Hilfetext anzeigen
 		if(e.getSource()==this.helpItem){
-			//JOptionPane.showMessageDialog(null, "Hier kommt Ilja seine Beschreibung rein", "Hilfe", 1);
-			JFrame helpWindow = new JFrame("Hilfe");
-			helpWindow.setSize(640,480);
-			helpWindow.setLayout(null);
-			JTextArea helpText = new JTextArea(helptext);
-			helpText.setBounds(10,10,620,400);
-			helpWindow.add(helpText);
-			helpWindow.setLocationRelativeTo(null);
-			JButton okHelp = new JButton("OK");
-			okHelp.setBounds(300,415,60,40);
-			okHelp.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-					helpWindow.dispose();
-				}
-			});
-			helpWindow.add(okHelp);
-			helpWindow.setVisible(true);
-		
+			JOptionPane.showMessageDialog(null, helptext, "Hilfe", 1);
 		}
+		//Über-Anzeige
 		if(e.getSource()==this.ueberItem){
 			JOptionPane.showMessageDialog(null, "Erschaffen im Juli 2016 von Ilja Hirse, Markus Müller und Rick Werner", "Über", 1);
 		}
