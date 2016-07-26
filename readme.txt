@@ -1,4 +1,4 @@
-﻿Das zu lösende LGS kann über die Funktion Datei>Öffnen aus einer Textdatei eingelesen werden,
+Das zu lösende LGS kann über die Funktion Datei>Öffnen aus einer Textdatei eingelesen werden,
 oder per Eingabe über das große Textfeld im linken Bereich der GUI.
 
 Die Form der Eingabe unterliegt dabei jeweils den folgenden Konventionen:
@@ -15,4 +15,4 @@ die folgende Zeile des LGS:
 3x1 -4x2 +5x4 =6
 
 muss diese Form in der Datei oder der Eingabe im Textfeld haben:
-3;-4;;5;6
+3;-4;0;5;6

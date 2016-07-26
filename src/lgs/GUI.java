@@ -15,6 +15,24 @@ import javax.swing.*;
 public class GUI extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = -7697154416089813186L;
+	private String helptext =   "Das zu lösende LGS kann über die Funktion Datei>Öffnen aus einer Textdatei eingelesen werden,\n" +
+							  	"oder per Eingabe über das große Textfeld im linken Bereich der GUI.\n\n" +
+								
+								"Die Form der Eingabe unterliegt dabei jeweils den folgenden Konventionen:\n\n" +
+								
+								"- alle Werte des LGS dürfen nur aus Zahlen, sowie + oder - als Vorzeichen bestehen\n" +
+								"- die Werte müssen mittels Semikolon separiert sein\n" +
+								"- es dürfen keine Variablen enthalten sein\n" +
+								"- der letzte Eintrag in jeder Zeile ist das Ergebnis dieser Zeile\n" +
+								"- fehlende Werte müssen auch separiert werden\n" +
+								"- hinter dem letzten Wert wird kein Trennzeichen gesetzt\n\n" +
+								
+								"Bsp.\n" +
+								"die folgende Zeile des LGS:\n" +
+								"3x1 -4x2 +5x4 =6\n\n" +
+								
+								"muss diese Form in der Datei oder der Eingabe im Textfeld haben:\n" +
+								"3;-4;0;5;6";
 	
 	
 	JPanel panel;
@@ -282,7 +300,7 @@ public class GUI extends JFrame implements ActionListener{
 			JFrame helpWindow = new JFrame("Hilfe");
 			helpWindow.setSize(640,480);
 			helpWindow.setLayout(null);
-			JTextArea helpText = new JTextArea("HIER kommt Iljas Text rein, dann ist es auch so formatiert, wie wir wollen.");
+			JTextArea helpText = new JTextArea(helptext);
 			helpText.setBounds(10,10,620,400);
 			helpWindow.add(helpText);
 			helpWindow.setLocationRelativeTo(null);
