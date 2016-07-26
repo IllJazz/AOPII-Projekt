@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 /**
  * Klasse zur Verwaltung und Lösung einer Matrix
- * för die Lösung wird die Matrix ferner als Matrix a und Lösungsvektor b abgespeichert
+ * für die Lösung wird die Matrix ferner als Matrix a und Lösungsvektor b abgespeichert
  * unter m wird die Anzahl Zeilen der Matrix und unter n die Anzahl Spalten (Spalten von a + 1 von b) gehalten
  * @author Markus Müller
  */
@@ -67,6 +67,33 @@ public class Matrix {
 		double factor;
 //		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
 		for(int i = 0; i < m - 1; i++) {
+			
+			//überprüfung der Ausgangszahl, falls 0 muss Spaltentausch ausgeführt werden
+			boolean switched = false;
+			if(a[i][i] == 0) {
+				for(int count = i + 1; count < n; count++) {
+					if(a[i][count] != 0) {
+						//Spaltentausch
+						for(int p = 0; p < m; p++) {
+							double temp = a[p][i];
+							a[p][i] = a[p][count];
+							a[p][count] = temp;
+						}
+						switched = true;
+						break;
+					}
+				}
+			}
+			if(!switched && a[i][i] == 0) {
+				if(b[i] == 0) {
+					return LESType.MULTIPLE;
+				} else {
+					System.out.println("none");
+					return LESType.NONE;
+				}
+			}
+			
+			
 			for(int j = i + 1; j < m; j++){
 				factor = - a[j][i] / a[i][i];
 				for(int l = 0; l < n - 1; l++) {
@@ -107,6 +134,31 @@ public class Matrix {
 		return LESType.ONE;
 	}
 	
+//	/**
+//	 * Zeile mit wenigsten Nullen wird in der Matrix mit der ersten(nullten) Zeile vertauscht
+//	 */
+//	public void pivoting() {
+//		int[] zeros = new int[a.length];
+//		for(int i = 0; i < a.length; i++) {
+//			for(int j = 0; j < a[0].length; j++) {
+//				if(a[i][j] == 0) {
+//					zeros[i]++;
+//				}
+//			}
+//		}
+//		int line = 0;
+//		for(int i = 1; i < a.length; i++) {
+//			if(zeros[i - 1] < zeros[i] && a[i][0] != 0) {
+//				line = i;
+//			}
+//		}
+//		for(int i = 1; i < a[0].length; i++) {
+//			double temp = a[0][i];
+//			a[0][i] = a[line][i];
+//			a[line][i] = temp;
+//		}
+//	}
+	
 	/**
 	 * 
 	 * @return solution Lösungsvektor Matrix (LGS)
@@ -123,6 +175,21 @@ public class Matrix {
 		double factor;
 //		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
 		for(int i = 0; i < m - 1; i++) {
+			
+			if(a[i][i] == 0) {
+				for(int count = i + 1; count < n; count++) {
+					if(a[i][count] != 0) {
+						//Spaltentausch
+						for(int p = 0; p < m; p++) {
+							double temp = a[p][i];
+							a[p][i] = a[p][count];
+							a[p][count] = temp;
+						}
+						break;
+					}
+				}
+			}
+			
 			for(int j = i + 1; j < m; j++){
 				factor = - a[j][i] / a[i][i];
 				for(int l = 0; l < n - 1; l++) {

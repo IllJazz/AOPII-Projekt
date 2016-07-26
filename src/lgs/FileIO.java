@@ -7,9 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Klasse zu Einlesen, Speichern und Verarbeiten von Dateien und Strings 
@@ -49,6 +47,7 @@ public class FileIO {
 			teil.add(lines.get(i).toString().split(";"));
 	    }
 	    // Ueberpruefung ob jede Zeile gleiche Anzahl an Eintraegen hat
+	    //
 	    int n=0;
 	    for (int i =1;i<lines.size();i++) {
 	    	if(n<teil.get(i-1).length)
@@ -63,6 +62,7 @@ public class FileIO {
 	    	if (m<teil.get(i).length)
 	    		m=teil.get(i).length;
 	    }
+//	    System.out.println(m);
 	    // String-ArrayList in zweidimensionalen Double-Array konvertieren
 	    matrix = new double[lines.size()][m];
 	    for (int j=0; j< lines.size();j++) {
@@ -114,36 +114,7 @@ public class FileIO {
 		//	for(int i=0; i<lines.size();i++)					//for testing only
 		//		System.out.println(lines.get(i).toString());	//for testing only
 	}
-
- 	/**
-     * Liest per Filereader und BufferedReader den Inhalt der Hilfe-Textdatei ein
-     * und gibt diesen zurück 	 
-     * @param 
-     * @returns text String, Text für Hilfedatei
-     **/    
-	public String readFile() {
-		String line, text="" ;
-		try {
-		    file = new FileReader("help.txt");
-	        buff = new BufferedReader(file);
-
-	        while ((line = buff.readLine()) != null) {
-	          text = text + line;
-	        }
-	    } catch (IOException e) {
-	        System.err.println("Dateifehler :" + e);
-	    } finally {
-	        try {
-	            buff.close();
-	            file.close();
-	        } catch (IOException e) {
-	            System.err.println("Dateifehler :" + e);
-	        }
-	    }
-		
-		return text;
-	}
-	
+   
 	/**
      * Liest per BufferedReader einen String ein und speichert diesen zeilenweise in einer ArrayList<Sring> 	 
      * @param matrix String, Matrixdaten in Stringform aus entsprechendem Textfeld der GUI
@@ -173,6 +144,7 @@ public class FileIO {
 		try {
 			fw = new FileWriter(filename);
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    bw = new BufferedWriter(fw);
@@ -180,12 +152,14 @@ public class FileIO {
 	    try {
 			bw.write(matrix.toFileString());
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	    try {
 			bw.close();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

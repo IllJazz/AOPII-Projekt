@@ -35,7 +35,7 @@ public class Main {
 			//System.out.println(matrix);
 			//double[] solution = new double[array.length]; 
 			//solution = matrix.solve();
-			//System.out.println("L�sung:\n" + Matrix.toString(solution));
+			//System.out.println("Lösung:\n" + Matrix.toString(solution));
 			//neueMatrix.writeFile(matrix);						// Test FileOutput
 //		} catch(Exception e) {
 //			e.printStackTrace();
