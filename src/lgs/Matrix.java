@@ -2,6 +2,7 @@ package lgs;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 
 /**
  * Klasse zur Verwaltung und Lösung einer Matrix
@@ -62,56 +63,57 @@ public class Matrix {
 		if(n < 2) {
 			throw new NoSolvableMatrixException("Matrix mit nur einer Spalte (Vektor) kann nicht gelöst werden!");
 		}
-		double[][] a = this.a;
-		double[] b = this.b;
+		double[][] alocal = new double[m][n];
+		for (int i = 0; i < alocal.length; i++)
+		     alocal[i] = Arrays.copyOf(a[i], a[i].length);
+		double[] blocal = Arrays.copyOf(b, b.length);
+		
 		double factor;
 //		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
 		for(int i = 0; i < m - 1; i++) {
 			
 			//überprüfung der Ausgangszahl, falls 0 muss Spaltentausch ausgeführt werden
 			boolean switched = false;
-			if(a[i][i] == 0) {
+			if(alocal[i][i] == 0) {
 				for(int count = i + 1; count < n; count++) {
-					if(a[i][count] != 0) {
+					if(alocal[i][count] != 0) {
 						//Spaltentausch
 						for(int p = 0; p < m; p++) {
-							double temp = a[p][i];
-							a[p][i] = a[p][count];
-							a[p][count] = temp;
+							double temp = alocal[p][i];
+							alocal[p][i] = alocal[p][count];
+							alocal[p][count] = temp;
 						}
 						switched = true;
 						break;
 					}
 				}
 			}
-			if(!switched && a[i][i] == 0) {
-				if(b[i] == 0) {
+			if(!switched && alocal[i][i] == 0) {
+				if(blocal[i] == 0) {
 					return LESType.MULTIPLE;
 				} else {
-					System.out.println("none");
 					return LESType.NONE;
 				}
 			}
 			
-			
 			for(int j = i + 1; j < m; j++){
-				factor = - a[j][i] / a[i][i];
+				factor = - alocal[j][i] / alocal[i][i];
 				for(int l = 0; l < n - 1; l++) {
-					a[j][l] += factor * a[i][l];
+					alocal[j][l] += factor * alocal[i][l];
 				}
-				b[j] += factor * b[i];
+				blocal[j] += factor * blocal[i];
 			}
 		}
 //		Überprüfung auf Nullen
-		boolean[] zerolines = new boolean[a.length];
-		for(int i = 0; i < a.length; i++) {
+		boolean[] zerolines = new boolean[alocal.length];
+		for(int i = 0; i < alocal.length; i++) {
 			int zeros = 0;
-			for(int j = 0; j < a[0].length; j++) {
-				if(a[i][j] == 0) {
+			for(int j = 0; j < alocal[0].length; j++) {
+				if(alocal[i][j] == 0) {
 					zeros++;
 				}
 			}
-			if(zeros == a[i].length) {
+			if(zeros == alocal[i].length) {
 				zerolines[i] = true;
 			} else {
 				zerolines[i] = false;
@@ -121,14 +123,14 @@ public class Matrix {
 		for(int i = 0; i < zerolines.length; i++) {
 			if(zerolines[i]) {
 //				falls in einer Zeile nur Nullen stehen und in b eine Zahl ungleich Null -> Ungleichung(keine Lösung)
-				if(b[i] != 0) {
+				if(blocal[i] != 0) {
 					return LESType.NONE;
 				} else {
 					counter++;
 				}
 			}
 		}
-		if(a[0].length > (zerolines.length - counter)) {
+		if(alocal[0].length > (zerolines.length - counter)) {
 			return LESType.MULTIPLE;
 		}
 		return LESType.ONE;
@@ -170,12 +172,19 @@ public class Matrix {
 			throw new NoSolvableMatrixException("Matrix mit nur einer Spalte (Vektor) kann nicht gelöst werden!");
 		}
 		double[] solution = new double[m];
-		double[][] a = this.a;
-		double[] b = this.b;
+		double[][] a = new double[m][n];
+		for (int i = 0; i < a.length; i++)
+		     a[i] = Arrays.copyOf(this.a[i], this.a[i].length);
+		double[] b = Arrays.copyOf(this.b, this.b.length);
 		double factor;
 //		Gauss-Algorithmus, Erzeugung einer Dreiecksmatrix
+		boolean[][] switchLines = new boolean[m][m];
+		for(int m1 = 0; m1 < m; m1++) {
+			for(int m2 = 0; m2 < m; m2++) {
+				switchLines[m1][m2] = false;
+			}
+		}
 		for(int i = 0; i < m - 1; i++) {
-			
 			if(a[i][i] == 0) {
 				for(int count = i + 1; count < n; count++) {
 					if(a[i][count] != 0) {
@@ -185,6 +194,7 @@ public class Matrix {
 							a[p][i] = a[p][count];
 							a[p][count] = temp;
 						}
+						switchLines[i][count] = true;
 						break;
 					}
 				}
@@ -198,6 +208,7 @@ public class Matrix {
 				b[j] += factor * b[i];
 			}
 		}
+		
 //		Weiterarbeiten nach Gauss-Jordan-Verfahren, Erzeugung der Hauptdiagonalen
 		for(int i = m - 1; i > 0; i--) {
 			for(int j = i - 1; j > -1; j--){
@@ -208,9 +219,19 @@ public class Matrix {
 				b[j] += factor * b[i];
 			}
 		}
+		
 //		Lösung aus den einzelnen Zeilen errechnen
 		for(int i = 0; i < m; i ++) {
 			solution[i] = round(b[i] / a[i][i], 2);
+		}
+		for(int m1 = 0; m1 < m; m1++) {
+			for(int m2 = 0; m2 < m; m2++) {
+				if(switchLines[m1][m2]) {
+					double temp = solution[m1];
+					solution[m1] = solution[m2];
+					solution[m2] = temp;
+				}
+			}
 		}
 		return solution;
 	}
